@@ -1,0 +1,8 @@
+res://player/player.tscn
+res://player/states/00_player_state.gd
+res://player/scripts/player.gd
+res://player/states/idle.gd
+res://player/states/run.gd
+res://playground.tscn
+res://player/states/fall.gd
+res://player/states/jump.gd
