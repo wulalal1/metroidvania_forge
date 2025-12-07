@@ -2,6 +2,15 @@ class_name Player extends CharacterBody2D
 
 const DEBUG_JUMP_INDICATOR = preload("uid://dklsn8ip8frqg")
 
+#region /// on ready variable
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_stand: CollisionShape2D = $CollisionStand
+@onready var collision_crouch: CollisionShape2D = $CollisionCrouch
+@onready var one_way_plantform_raycast: RayCast2D = $OneWayPlantformRaycast
+
+
+
+#endregion
 
 #region /// export variable
 @export var move_speed : float = 150
@@ -17,6 +26,7 @@ var previous_state : PlayerState :
 #region /// State Machine Variable
 var direction : Vector2 = Vector2.ZERO
 var gravity : float = 980
+var gravity_mulitplier : float = 1.0
 #endregion
 
 func _ready() -> void:
@@ -37,7 +47,7 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	velocity.y += gravity * _delta
+	velocity.y += gravity * _delta * gravity_mulitplier
 	move_and_slide()
 	change_state(current_state.physics_process( _delta ))
 	
