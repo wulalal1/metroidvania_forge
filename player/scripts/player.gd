@@ -6,7 +6,8 @@ const DEBUG_JUMP_INDICATOR = preload("uid://dklsn8ip8frqg")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_stand: CollisionShape2D = $CollisionStand
 @onready var collision_crouch: CollisionShape2D = $CollisionCrouch
-@onready var one_way_plantform_raycast: RayCast2D = $OneWayPlantformRaycast
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var one_way_platform_shape_cast: ShapeCast2D = $OneWayPlatformShapeCast
 
 
 
@@ -14,6 +15,7 @@ const DEBUG_JUMP_INDICATOR = preload("uid://dklsn8ip8frqg")
 
 #region /// export variable
 @export var move_speed : float = 150
+@export var max_fall_velocity : float = 600.0
 #endregion
 #region /// State Machine Variable
 var states : Array[ PlayerState ]
@@ -48,6 +50,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	velocity.y += gravity * _delta * gravity_mulitplier
+	velocity.y = clampf(velocity.y,-1000.0,max_fall_velocity)
 	move_and_slide()
 	change_state(current_state.physics_process( _delta ))
 	
@@ -89,11 +92,17 @@ func  change_state( new_state : PlayerState ) -> void:
 	pass
 
 func update_direction() -> void:
-	#var prey_direction : Vector2 = direction
+	var prey_direction : Vector2 = direction
 	#direction = Input.get_vector("left","right","up","down")
 	var x_axis = Input.get_axis("left","right")
 	var y_axis = Input.get_axis("up","down")
 	direction =Vector2(x_axis,y_axis)
+	
+	if prey_direction.x != direction.x:
+		if direction.x < 0:
+			sprite.flip_h = true
+		elif direction.x > 0:
+			sprite.flip_h = false
 	#do the staff
 	pass
 	

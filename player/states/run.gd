@@ -7,6 +7,7 @@ func init() -> void:
 
 #当我们进入这个状态会发生什么?
 func enter() -> void:
+	player.animation_player.play("run")
 	pass
 
 #当我们退出这个状态时会发生什么?

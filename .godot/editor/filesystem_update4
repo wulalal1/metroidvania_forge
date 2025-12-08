@@ -1,8 +1,8 @@
-res://player/states/fall.gd
 res://player/player.tscn
 res://player/scripts/player.gd
-res://player/states/crouch.gd
-res://player/states/00_player_state.gd
 res://player/states/idle.gd
+res://player/states/crouch.gd
+res://player/states/jump.gd
 res://player/states/run.gd
 res://playground.tscn
+res://player/states/fall.gd
