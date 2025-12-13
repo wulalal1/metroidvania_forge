@@ -1,8 +1,4 @@
-res://player/player.tscn
-res://player/scripts/player.gd
-res://player/states/idle.gd
-res://player/states/crouch.gd
-res://player/states/jump.gd
-res://player/states/run.gd
-res://playground.tscn
-res://player/states/fall.gd
+res://general/script/level_bound.gd
+res://level/00_forest/01.tscn
+res://level/tilesets/forgotten_forest.tres
+res://level/00_forest/02.tscn

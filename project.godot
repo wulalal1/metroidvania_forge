@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="eveil"
-run/main_scene="uid://dhkjrl0h2iajb"
+run/main_scene="uid://bl8r7qerfsyvj"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 

@@ -1,3 +1,6 @@
+TileMapLayer
+LevelBounds
+Camera2D
 ShapeCast2D
 RayCast2D
 AnimationPlayer
