@@ -1,13 +1,14 @@
-[gd_scene load_steps=4 format=4 uid="uid://bl8r7qerfsyvj"]
+[gd_scene load_steps=5 format=4 uid="uid://bl8r7qerfsyvj"]
 
 [ext_resource type="TileSet" uid="uid://du1gpbscf43nr" path="res://level/tilesets/forgotten_forest.tres" id="1_tqtc3"]
 [ext_resource type="PackedScene" uid="uid://cty21f0k4culd" path="res://player/player.tscn" id="2_e37rk"]
 [ext_resource type="Script" uid="uid://crir7djhqs0l2" path="res://general/script/level_bound.gd" id="3_e37rk"]
+[ext_resource type="PackedScene" uid="uid://bifq5xcyg1cwj" path="res://general/level_transition/level_transition.tscn" id="4_sstrf"]
 
 [node name="01" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_e37rk")]
-position = Vector2(106, 133)
+position = Vector2(547, 122)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAOAAIAAQATAA0AAAAOAAMAAQATAA4AAAAOAAQAAQATAA8AAAAPAAIAAQAWAA0AAAAPAAMAAQAWAA4AAAAPAAQAAQAWAA8AAAAOAAUAAQATAA8AAAAPAAUAAQAWAA8AAAAHAAMAAQAVAA0AAAAHAAQAAQAVAA4AAAAHAAUAAQAVAA8AAAAHAAYAAQAVAA8AAAAIAAMAAQAWAA0AAAAIAAQAAQAWAA4AAAAIAAUAAQAWAA8AAAAIAAYAAQAWAA8AAAAFAAMAAQATAA0AAAAFAAQAAQATAA4AAAAFAAUAAQATAA8AAAAFAAYAAQATAA8AAAAGAAMAAQAUAA0AAAAGAAQAAQAUAA4AAAAGAAUAAQAUAA8AAAAGAAYAAQAUAA8AAAAKAAMAAQATAA0AAAAKAAQAAQATAA4AAAAKAAUAAQATAA8AAAALAAMAAQAUAA0AAAALAAQAAQAUAA4AAAALAAUAAQAUAA8AAAAMAAMAAQAVAA0AAAAMAAQAAQAVAA4AAAAMAAUAAQAVAA8AAAANAAMAAQAWAA0AAAANAAQAAQAWAA4AAAANAAUAAQAWAA8AAAARAAQAAQATAA0AAAARAAUAAQATAA4AAAASAAQAAQAUAA0AAAASAAUAAQAUAA4AAAATAAQAAQAVAA0AAAATAAUAAQAVAA4AAAAUAAQAAQAWAA0AAAAUAAUAAQAWAA4AAAA=")
@@ -28,3 +29,10 @@ position = Vector2(-32, -32)
 script = ExtResource("3_e37rk")
 width = 736
 metadata/_custom_type_script = "uid://crir7djhqs0l2"
+
+[node name="LevelTransition" parent="." instance=ExtResource("4_sstrf")]
+position = Vector2(704, 160)
+size = 20
+location = 1
+target_level = "uid://b4l3kfffjnr7x"
+target_area_name = "LevelTransition"
