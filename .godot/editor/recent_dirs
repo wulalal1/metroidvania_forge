@@ -1,4 +1,5 @@
 res://level/00_forest
+res://00_global/scene_manager
 res://level/tilesets
 res://player
 res://player/scripts

@@ -1,6 +1,7 @@
-res://level/00_forest/01.tscn
+res://00_global/scene_manager/scene_manager.tscn
 res://level/tilesets/forgotten_forest.tres
-res://general/level_transition/level_transition.gd
-res://level/00_forest/02.tscn
-res://general/level_transition/level_transition.tscn
+res://00_global/scene_manager/scene_manager.gd
 res://level/00_forest/03.tscn
+res://level/00_forest/02.tscn
+res://general/level_transition/level_transition.gd
+res://level/00_forest/01.tscn

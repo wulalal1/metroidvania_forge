@@ -1,6 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://du1gpbscf43nr"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://du1gpbscf43nr"]
 
 [ext_resource type="Texture2D" uid="uid://n8sl2t7u5s7p" path="res://level/tilesets/sprites/forgotten_forest_example_tileset.png" id="1_5of7x"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_5of7x"]
+tile_data = PackedInt32Array(0, 1507329, 9, 65536, 1507329, 10, 131072, 1507329, 11, 196608, 1507329, 12, 262144, 1507329, 13, 1, 1572865, 9, 65537, 1572865, 10, 131073, 1572865, 11, 196609, 1572865, 12, 262145, 1572865, 13, 327681, 1572865, 14, 393217, 1572865, 15, 65538, 1638401, 10, 131074, 1638401, 11, 196610, 1638401, 12, 262146, 1638401, 13)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbeo5"]
 texture = ExtResource("1_5of7x")
@@ -1237,3 +1240,4 @@ terrain_set_0/terrain_0/color = Color(0.062524095, 0.9480516, 0.2522801, 1)
 terrain_set_0/terrain_1/name = "Stone Terrain 1"
 terrain_set_0/terrain_1/color = Color(0.038391948, 0.9107355, 0.9684175, 1)
 sources/1 = SubResource("TileSetAtlasSource_lbeo5")
+pattern_0 = SubResource("TileMapPattern_5of7x")
