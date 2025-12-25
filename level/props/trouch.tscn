@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://bkv0lvebpyrqx"]
+
+[ext_resource type="Texture2D" uid="uid://n8sl2t7u5s7p" path="res://level/tilesets/sprites/forgotten_forest_example_tileset.png" id="1_tg5j4"]
+[ext_resource type="Script" uid="uid://dpp2to43q731d" path="res://general/script/light_flicker.gd" id="2_4b4c8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4b4c8"]
+atlas = ExtResource("1_tg5j4")
+region = Rect2(512, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucmbb"]
+atlas = ExtResource("1_tg5j4")
+region = Rect2(544, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npa8x"]
+atlas = ExtResource("1_tg5j4")
+region = Rect2(576, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kolr0"]
+atlas = ExtResource("1_tg5j4")
+region = Rect2(608, 256, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4o3c"]
+atlas = ExtResource("1_tg5j4")
+region = Rect2(640, 256, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0c3p0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4b4c8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucmbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npa8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kolr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4o3c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_tg5j4"]
+offsets = PackedFloat32Array(0, 0.30666667, 0.6933333, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.9684175, 0.83205014, 0.2549315, 1, 0.8869536, 0.18257633, 0.08765999, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4b4c8"]
+gradient = SubResource("Gradient_tg5j4")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.90000004, 0.5)
+metadata/_snap_enabled = true
+
+[node name="Trouch" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_0c3p0")
+autoplay = "default"
+frame_progress = 0.0061231526
+offset = Vector2(0, -32)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+modulate = Color(0.20808762, 0.20808762, 0.20808762, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_4b4c8")
+script = ExtResource("2_4b4c8")
+flicker_intensity = 0.2
+flicker_frequency = 0.1

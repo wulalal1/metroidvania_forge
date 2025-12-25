@@ -1,6 +1,10 @@
-TileMapLayer
-Parallax2D
 Sprite2D
+PointLight2D
+DirectionalLight2D
+Parallax2D
+TileMapLayer
+AnimatedSprite2D
+Node2D
 TileMap
 TextureRect
 Label
@@ -8,7 +12,3 @@ Control
 CanvasLayer
 LevelBounds
 CollisionShape2D
-Area2D
-Camera2D
-ShapeCast2D
-RayCast2D
