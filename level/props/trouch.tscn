@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bkv0lvebpyrqx"]
+[gd_scene load_steps=15 format=3 uid="uid://bkv0lvebpyrqx"]
 
 [ext_resource type="Texture2D" uid="uid://n8sl2t7u5s7p" path="res://level/tilesets/sprites/forgotten_forest_example_tileset.png" id="1_tg5j4"]
 [ext_resource type="Script" uid="uid://dpp2to43q731d" path="res://general/script/light_flicker.gd" id="2_4b4c8"]
@@ -59,6 +59,29 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.90000004, 0.5)
 metadata/_snap_enabled = true
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4b4c8"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ucmbb"]
+offsets = PackedFloat32Array(0, 0.5849057, 1)
+colors = PackedColorArray(3.232165, 3.2944162, 0, 1, 1.353256, 0.44765884, 0.03137255, 0.49803922, 1.0072657, 0.046662368, 0.119860694, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_npa8x"]
+gradient = SubResource("Gradient_ucmbb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kolr0"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = -0.3
+direction = Vector3(0, -20, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_npa8x")
+turbulence_enabled = true
+turbulence_influence_max = 0.3
+turbulence_initial_displacement_min = -19.999998
+turbulence_initial_displacement_max = 20.000002
+
 [node name="Trouch" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_0c3p0")
 autoplay = "default"
@@ -72,3 +95,10 @@ texture = SubResource("GradientTexture2D_4b4c8")
 script = ExtResource("2_4b4c8")
 flicker_intensity = 0.2
 flicker_frequency = 0.1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_4b4c8")
+position = Vector2(1, -49)
+amount = 3
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_kolr0")

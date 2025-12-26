@@ -1,7 +1,6 @@
 res://level/00_forest/01.tscn
 res://level/tilesets/forgotten_forest.tres
+res://materials_and_shaders/fog_fade_material.tres
+res://materials_and_shaders/fog_fade_shader.tres
 res://level/00_forest/02.tscn
-res://player/player.tscn
 res://level/props/trouch.tscn
-res://general/script/light_flicker.gd
-res://level/00_forest/03.tscn
