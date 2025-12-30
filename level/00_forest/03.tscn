@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://bubadi6sow8su"]
+[gd_scene load_steps=6 format=4 uid="uid://bubadi6sow8su"]
 
 [ext_resource type="TileSet" uid="uid://du1gpbscf43nr" path="res://level/tilesets/forgotten_forest.tres" id="1_bujsc"]
 [ext_resource type="Script" uid="uid://crir7djhqs0l2" path="res://general/script/level_bound.gd" id="2_kp6eg"]
 [ext_resource type="PackedScene" uid="uid://bifq5xcyg1cwj" path="res://general/level_transition/level_transition.tscn" id="3_m7thp"]
 [ext_resource type="PackedScene" uid="uid://bkv0lvebpyrqx" path="res://level/props/trouch.tscn" id="4_pxlh5"]
+[ext_resource type="PackedScene" uid="uid://di4qclgoewygn" path="res://general/player_spawn/player_spawn.tscn" id="5_xxssc"]
 
 [node name="03" type="Node2D"]
 
@@ -29,7 +30,6 @@ metadata/_custom_type_script = "uid://crir7djhqs0l2"
 
 [node name="LevelTransition" parent="." instance=ExtResource("3_m7thp")]
 position = Vector2(65, -9)
-size = 2
 location = 2
 target_level = "uid://b4l3kfffjnr7x"
 target_area_name = "LevelTransition2"
@@ -49,3 +49,6 @@ position = Vector2(31, 260)
 color = Color(0.09575601, 0.10625774, 0.09741396, 1)
 energy = 0.6
 blend_mode = 2
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("5_xxssc")]
+position = Vector2(239, 111)

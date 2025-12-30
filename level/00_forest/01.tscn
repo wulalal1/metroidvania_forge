@@ -1,11 +1,11 @@
 [gd_scene load_steps=20 format=4 uid="uid://bl8r7qerfsyvj"]
 
 [ext_resource type="TileSet" uid="uid://du1gpbscf43nr" path="res://level/tilesets/forgotten_forest.tres" id="1_tqtc3"]
-[ext_resource type="PackedScene" uid="uid://cty21f0k4culd" path="res://player/player.tscn" id="2_e37rk"]
 [ext_resource type="Script" uid="uid://crir7djhqs0l2" path="res://general/script/level_bound.gd" id="3_e37rk"]
 [ext_resource type="PackedScene" uid="uid://bifq5xcyg1cwj" path="res://general/level_transition/level_transition.tscn" id="4_sstrf"]
 [ext_resource type="PackedScene" uid="uid://cl2e45pj0gfus" path="res://level/props/plant.tscn" id="5_o5tm3"]
 [ext_resource type="Texture2D" uid="uid://giomay66yawf" path="res://level/tilesets/sprites/light_stream.jpg" id="6_eh61h"]
+[ext_resource type="PackedScene" uid="uid://di4qclgoewygn" path="res://general/player_spawn/player_spawn.tscn" id="7_e4h0q"]
 [ext_resource type="Material" uid="uid://dbas6fy3eukl4" path="res://materials_and_shaders/fog_fade_material.tres" id="7_entlb"]
 
 [sub_resource type="Gradient" id="Gradient_sstrf"]
@@ -84,12 +84,14 @@ script = ExtResource("3_e37rk")
 width = 736
 metadata/_custom_type_script = "uid://crir7djhqs0l2"
 
+[node name="PlayerSpawn" parent="." instance=ExtResource("7_e4h0q")]
+position = Vector2(39, -103)
+
 [node name="LevelTransition" parent="." instance=ExtResource("4_sstrf")]
 position = Vector2(703, 165)
 size = 20
 location = 1
 target_level = "uid://b4l3kfffjnr7x"
-target_area_name = "LevelTransition"
 
 [node name="BGParallaxLayers" type="Node2D" parent="."]
 
@@ -295,9 +297,6 @@ offset = Vector2(0, 200)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ForegroundElements/Foreground"]
 tile_set = ExtResource("1_tqtc3")
-
-[node name="Player" parent="." instance=ExtResource("2_e37rk")]
-position = Vector2(602, 118)
 
 [node name="FogParallax2D" type="Parallax2D" parent="."]
 z_index = 5

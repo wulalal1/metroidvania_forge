@@ -1,6 +1,8 @@
-res://level/00_forest/01.tscn
+res://general/player_spawn/player_spawn.tscn
 res://level/tilesets/forgotten_forest.tres
-res://materials_and_shaders/fog_fade_material.tres
 res://materials_and_shaders/fog_fade_shader.tres
+res://general/player_spawn/player_spawn.gd
+res://level/00_forest/01.tscn
+res://player/player.tscn
+res://level/00_forest/03.tscn
 res://level/00_forest/02.tscn
-res://level/props/trouch.tscn

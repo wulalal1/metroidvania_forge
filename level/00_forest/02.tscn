@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://b4l3kfffjnr7x"]
+[gd_scene load_steps=15 format=4 uid="uid://b4l3kfffjnr7x"]
 
 [ext_resource type="TileSet" uid="uid://du1gpbscf43nr" path="res://level/tilesets/forgotten_forest.tres" id="1_4nor7"]
 [ext_resource type="PackedScene" uid="uid://bifq5xcyg1cwj" path="res://general/level_transition/level_transition.tscn" id="2_rhmqg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bkv0lvebpyrqx" path="res://level/props/trouch.tscn" id="5_aycm6"]
 [ext_resource type="Texture2D" uid="uid://giomay66yawf" path="res://level/tilesets/sprites/light_stream.jpg" id="6_0c5db"]
 [ext_resource type="Material" uid="uid://dbas6fy3eukl4" path="res://materials_and_shaders/fog_fade_material.tres" id="7_bmx1x"]
+[ext_resource type="PackedScene" uid="uid://di4qclgoewygn" path="res://general/player_spawn/player_spawn.tscn" id="8_5bo58"]
 
 [sub_resource type="Gradient" id="Gradient_alqqx"]
 offsets = PackedFloat32Array(0, 0.21333334, 0.96666664)
@@ -50,16 +51,12 @@ metadata/_custom_type_script = "uid://crir7djhqs0l2"
 [node name="LevelTransition" parent="." instance=ExtResource("2_rhmqg")]
 position = Vector2(-55, 171)
 size = 20
-location = 0
 target_level = "uid://bl8r7qerfsyvj"
-target_area_name = "LevelTransition"
 
 [node name="LevelTransition2" parent="." instance=ExtResource("2_rhmqg")]
 position = Vector2(58, 234)
-size = 2
 location = 3
 target_level = "uid://bubadi6sow8su"
-target_area_name = "LevelTransition"
 
 [node name="BGParallaxLayers" type="Node2D" parent="."]
 
@@ -274,3 +271,6 @@ modulate = Color(0.6627451, 0.9607843, 0.9607843, 0.4117647)
 material = ExtResource("7_bmx1x")
 position = Vector2(747, 180)
 texture = SubResource("NoiseTexture2D_b8c01")
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("8_5bo58")]
+position = Vector2(171, 70)
