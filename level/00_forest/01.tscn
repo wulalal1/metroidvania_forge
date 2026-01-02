@@ -85,7 +85,7 @@ width = 736
 metadata/_custom_type_script = "uid://crir7djhqs0l2"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("7_e4h0q")]
-position = Vector2(39, -103)
+position = Vector2(123, 95)
 
 [node name="LevelTransition" parent="." instance=ExtResource("4_sstrf")]
 position = Vector2(703, 165)

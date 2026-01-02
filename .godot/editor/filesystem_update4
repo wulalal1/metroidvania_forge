@@ -1,8 +1,7 @@
-res://general/player_spawn/player_spawn.tscn
+res://player/player.tscn
 res://level/tilesets/forgotten_forest.tres
 res://materials_and_shaders/fog_fade_shader.tres
-res://general/player_spawn/player_spawn.gd
-res://level/00_forest/01.tscn
-res://player/player.tscn
-res://level/00_forest/03.tscn
-res://level/00_forest/02.tscn
+res://player/scripts/input_hint.gd
+res://00_global/messages.gd
+res://general/save_point/save_point.gd
+res://level/00_forest/04.tscn

@@ -1,10 +1,12 @@
+res://player/scripts
+res://level/00_forest
+res://00_global
+res://general/save_point
 res://general/player_spawn
 res://materials_and_shaders
 res://level/tilesets/sprites
 res://level/props
 res://level/tilesets
-res://level/00_forest
 res://00_global/scene_manager
 res://player
-res://player/scripts
 res://

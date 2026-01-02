@@ -9,7 +9,15 @@ const DEBUG_JUMP_INDICATOR = preload("uid://dklsn8ip8frqg")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var one_way_platform_shape_cast: ShapeCast2D = $OneWayPlatformShapeCast
 
+#endregion
 
+#region /// player stats
+var hp : float = 20
+var max_hp : float = 20
+var dash : bool = false
+var double_jump : bool = false
+var ground_slam : bool =false
+var morph_roll : bool = false
 
 #endregion
 
@@ -37,9 +45,12 @@ func _ready() -> void:
 		self.queue_free()
 	initialize_states()
 	self.call_deferred("reparent",get_tree().root)
+	Messages.player_healed.connect(_on_player_healed)
 	pass
 	
 func  _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("action"):
+		Messages.player_interacted.emit(self)
 	change_state(current_state.handle_input(event))
 	pass
 	
@@ -118,4 +129,9 @@ func  add_debug_indicator( color : Color = Color.RED ) -> void:
 	d.modulate = color
 	await get_tree().create_timer( 3.0 ).timeout
 	d.queue_free()
+	pass
+
+func _on_player_healed(amount : float) -> void:
+	hp += amount
+	print("player health for : ",amount)
 	pass
