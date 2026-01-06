@@ -1,7 +1,5 @@
-res://player/player.tscn
+res://title_screen/title_screen.tscn
 res://level/tilesets/forgotten_forest.tres
 res://materials_and_shaders/fog_fade_shader.tres
-res://player/scripts/input_hint.gd
-res://00_global/messages.gd
-res://general/save_point/save_point.gd
-res://level/00_forest/04.tscn
+res://title_screen/title_screen.gd
+res://00_global/save_manager.gd
