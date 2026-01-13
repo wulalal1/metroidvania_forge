@@ -1,5 +1,10 @@
-res://title_screen/title_screen.tscn
+res://pause_menu/map_node.tscn
 res://level/tilesets/forgotten_forest.tres
 res://materials_and_shaders/fog_fade_shader.tres
-res://title_screen/title_screen.gd
+res://pause_menu/scripts/map_node.gd
 res://00_global/save_manager.gd
+res://00_global/scene_manager/scene_manager.gd
+res://pause_menu/pause_menu.tscn
+res://00_global/messages.gd
+res://pause_menu/scripts/pause_menu.gd
+res://player/scripts/player.gd
