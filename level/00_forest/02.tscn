@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://b4l3kfffjnr7x"]
+[gd_scene load_steps=17 format=4 uid="uid://b4l3kfffjnr7x"]
 
 [ext_resource type="TileSet" uid="uid://du1gpbscf43nr" path="res://level/tilesets/forgotten_forest.tres" id="1_4nor7"]
 [ext_resource type="PackedScene" uid="uid://bifq5xcyg1cwj" path="res://general/level_transition/level_transition.tscn" id="2_rhmqg"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://giomay66yawf" path="res://level/tilesets/sprites/light_stream.jpg" id="6_0c5db"]
 [ext_resource type="Material" uid="uid://dbas6fy3eukl4" path="res://materials_and_shaders/fog_fade_material.tres" id="7_bmx1x"]
 [ext_resource type="PackedScene" uid="uid://di4qclgoewygn" path="res://general/player_spawn/player_spawn.tscn" id="8_5bo58"]
+[ext_resource type="Script" uid="uid://bqpwu3ktipoto" path="res://music/music_auto_trigger.gd" id="9_b8c01"]
+[ext_resource type="AudioStream" uid="uid://bhhjxbret26sw" path="res://music/forest_01.ogg" id="10_6r5np"]
 
 [sub_resource type="Gradient" id="Gradient_alqqx"]
 offsets = PackedFloat32Array(0, 0.21333334, 0.96666664)
@@ -274,3 +276,8 @@ texture = SubResource("NoiseTexture2D_b8c01")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("8_5bo58")]
 position = Vector2(174, 100)
+
+[node name="MusicAutoTrigger" type="Node" parent="."]
+script = ExtResource("9_b8c01")
+track = ExtResource("10_6r5np")
+metadata/_custom_type_script = "uid://bqpwu3ktipoto"

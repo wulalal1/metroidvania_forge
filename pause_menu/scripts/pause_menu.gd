@@ -12,16 +12,21 @@ class_name PauseMenu extends CanvasLayer
 #endregion
 
 
-var player : Player
+var player_position : Vector2
+
 
 func _ready() -> void:
 	#grab palyer
 	#show map
 	show_pause_screen()
 	system_menu_button.pressed.connect(show_system_menu)
+	Audio.setup_button_audio(self)
 	#audio setup
 	#setup system
-	setup_ststem_menu()
+	setup_system_menu()
+	var player : Node2D = get_tree().get_first_node_in_group("Player")
+	if player:
+		player_position =  player.global_position
 	pass
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -45,8 +50,15 @@ func show_pause_screen() -> void:
 	system.visible = false
 	pass
 	
-func setup_ststem_menu() -> void:
+func setup_system_menu() -> void:
 	#setup slider
+	music_h_slider.value = AudioServer.get_bus_volume_linear(2)
+	sfxh_slider.value = AudioServer.get_bus_volume_linear(3)
+	uih_slider.value = AudioServer.get_bus_volume_linear(4)
+	music_h_slider.value_changed.connect(_on_silder_music_changed)
+	sfxh_slider.value_changed.connect(_on_sfx_silder_changed)
+	uih_slider.value_changed.connect(_on_ui_silder_changed)
+	
 	back_to_title_button.pressed.connect(_on_back_to_title_pressed)
 	back_to_map_button.pressed.connect(show_pause_screen)
 	pass
@@ -57,4 +69,21 @@ func _on_back_to_title_pressed() -> void:
 	get_tree().paused = false
 	Messages.back_to_title_screen.emit()
 	queue_free()
+	pass
+	
+
+func _on_silder_music_changed(v : float) -> void:
+	AudioServer.set_bus_volume_linear(2,v)
+	SaveManager.save_configuration()
+	
+	pass
+func _on_sfx_silder_changed(v : float) -> void:
+	AudioServer.set_bus_volume_linear(3,v)
+	Audio.play_spatial_sound(Audio.ui_focus_audio,player_position)
+	SaveManager.save_configuration()
+	pass
+func _on_ui_silder_changed(v : float) -> void:
+	AudioServer.set_bus_volume_linear(4,v)
+	Audio.ui_focus_change()
+	SaveManager.save_configuration()
 	pass
