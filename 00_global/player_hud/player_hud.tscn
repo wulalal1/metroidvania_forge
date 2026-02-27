@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dusv57044rdxo"]
+[gd_scene load_steps=8 format=3 uid="uid://dusv57044rdxo"]
 
 [ext_resource type="Texture2D" uid="uid://bil5k8lce3j10" path="res://00_global/player_hud/health_bar_frame.png" id="1_hv14i"]
 [ext_resource type="Script" uid="uid://d4k2pado2w0e6" path="res://00_global/player_hud/player_hud.gd" id="1_vb1bs"]
@@ -15,6 +15,23 @@ colors = PackedColorArray(0.8627451, 0.34117648, 0.34117648, 1, 0.880165, 0.4285
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4jtec"]
 gradient = SubResource("Gradient_tdgrf")
+
+[sub_resource type="GDScript" id="GDScript_vb1bs"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pressed.connect(_on_pressed)
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _on_pressed() -> void:
+	
+	VisualEffects.camera_shake()
+	pass
+"
 
 [node name="PlayerHud" type="CanvasLayer"]
 process_mode = 3
@@ -64,3 +81,12 @@ rounded = true
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture2D_26715")
 texture_progress = SubResource("GradientTexture2D_4jtec")
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 50.0
+offset_right = 472.0
+offset_bottom = 73.0
+text = "test Shake"
+script = SubResource("GDScript_vb1bs")

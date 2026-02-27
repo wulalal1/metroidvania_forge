@@ -1,3 +1,6 @@
+AnimationPlayer
+Sprite2D
+Button
 ColorRect
 MusicAutoTrigger
 AudioStreamPlayer
@@ -5,11 +8,7 @@ Node
 CollisionShape2D
 Area2D
 StaticBody2D
-AnimationPlayer
 DirectionalLight2D
 LevelBounds
 Node2D
 TileMapLayer
-Player
-Sprite2D
-NinePatchRect

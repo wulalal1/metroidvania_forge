@@ -1,10 +1,12 @@
+res://00_global/visual_effects
+res://player/scripts
+res://title_screen
 res://00_global/audio
 res://level/00_forest
 res://pause_menu/scripts
 res://pause_menu
 res://00_global/player_hud
 res://general/fonts
-res://player/scripts
 res://00_global
 res://general/save_point
 res://general/player_spawn

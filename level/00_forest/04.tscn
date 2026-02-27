@@ -20,8 +20,8 @@ target_area_name = "LevelTransition5"
 
 [node name="LevelBounds" type="Node2D" parent="."]
 z_index = 256
+position = Vector2(0, 7)
 script = ExtResource("2_rqgc1")
-width = 512
 metadata/_custom_type_script = "uid://crir7djhqs0l2"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("5_rqgc1")]

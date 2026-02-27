@@ -9,6 +9,7 @@ func init() -> void:
 #当我们进入这个状态会发生什么?
 func enter() -> void:
 	#play animation
+	VisualEffects.jump_dust(player.global_position)
 	player.animation_player.play("jump")
 	player.animation_player.pause()
 	#player.add_debug_indicator(Color.LIME_GREEN)
