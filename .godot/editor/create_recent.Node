@@ -1,3 +1,11 @@
+Area2D
+CollisionShape2D
+DamageArea
+AttackArea
+PlayerSpawn
+LevelBounds
+DirectionalLight2D
+TileMapLayer
 GPUParticles2D
 AnimationPlayer
 Sprite2D
@@ -5,11 +13,3 @@ Button
 ColorRect
 MusicAutoTrigger
 AudioStreamPlayer
-Node
-CollisionShape2D
-Area2D
-StaticBody2D
-DirectionalLight2D
-LevelBounds
-Node2D
-TileMapLayer
