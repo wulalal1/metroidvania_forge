@@ -44,7 +44,7 @@ position = Vector2(436, 256)
 position = Vector2(658, 258)
 
 [node name="DamageArea" type="Area2D" parent="."]
-position = Vector2(365, 205)
+position = Vector2(383, 224)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("5_q6gxu")
@@ -52,7 +52,6 @@ audio = ExtResource("6_q6gxu")
 metadata/_custom_type_script = "uid://c8kuda8wrkqje"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-position = Vector2(18, 21)
 shape = SubResource("RectangleShape2D_mmbk4")
 
 [node name="Area2D" type="Area2D" parent="."]

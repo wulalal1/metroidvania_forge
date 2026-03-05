@@ -1,9 +1,12 @@
 res://default_bus_layout.tres
-res://level/00_forest/04.tscn
+res://player/player.tscn
 res://level/tilesets/forgotten_forest.tres
 res://materials_and_shaders/fog_fade_shader.tres
-res://general/script/attack_area.gd
-res://general/script/damage_area.gd
-res://level/00_forest/06.tscn
-res://player/player.tscn
+res://player/states/00_player_state.gd
+res://player/states/attack.gd
+res://player/states/idle.gd
 res://player/scripts/player.gd
+res://player/states/crouch.gd
+res://player/states/fall.gd
+res://player/states/jump.gd
+res://player/states/run.gd

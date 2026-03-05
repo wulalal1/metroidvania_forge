@@ -31,8 +31,9 @@ func exit() -> void:
 #当按下按键处理情况会发生什么?
 func handle_input(event : InputEvent) -> PlayerState:
 	#handle input
+	if event.is_action_pressed("attack"):
+		return attack
 	if event.is_action_released("jump"):
-		player.velocity.y *= 0.5
 		return fall
 	return next_state
 	
