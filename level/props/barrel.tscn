@@ -1,0 +1,41 @@
+[gd_scene load_steps=11 format=3 uid="uid://wkimglf7ubcv"]
+
+[ext_resource type="Script" uid="uid://dsjv00iav8ulj" path="res://general/script/breakable.gd" id="1_jsucw"]
+[ext_resource type="Script" uid="uid://dpmqf183mx5sj" path="res://00_global/visual_effects/hit_particle_settings.gd" id="2_hpa20"]
+[ext_resource type="Script" uid="uid://c8kuda8wrkqje" path="res://general/script/damage_area.gd" id="2_mbhco"]
+[ext_resource type="Texture2D" uid="uid://8jkst4d62cuw" path="res://general/sprites/props_destructible.png" id="3_3ufs2"]
+[ext_resource type="Resource" uid="uid://cq0xhf71a3nxb" path="res://00_global/visual_effects/hit_particle_settings/hit_magic_blue.tres" id="3_4qqs7"]
+[ext_resource type="Resource" uid="uid://cxtqm33ptt46a" path="res://00_global/visual_effects/hit_particle_settings/hit_barrel_yellow.tres" id="4_hpa20"]
+[ext_resource type="Resource" uid="uid://by4yj45mta71j" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_small.tres" id="5_qfj6d"]
+[ext_resource type="Resource" uid="uid://dvto1g1fvd75o" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_medium.tres" id="6_5v7g5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpa20"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qqs7"]
+size = Vector2(22, 20)
+
+[node name="Barrel" type="Node2D"]
+script = ExtResource("1_jsucw")
+hit_particles = Array[ExtResource("2_hpa20")]([ExtResource("3_4qqs7")])
+destory_particles = Array[ExtResource("2_hpa20")]([ExtResource("4_hpa20"), ExtResource("5_qfj6d"), ExtResource("6_5v7g5")])
+metadata/_custom_type_script = "uid://dsjv00iav8ulj"
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("2_mbhco")
+metadata/_custom_type_script = "uid://c8kuda8wrkqje"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("RectangleShape2D_hpa20")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_3ufs2")
+region_enabled = true
+region_rect = Rect2(109, 38, 22, 25)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_4qqs7")

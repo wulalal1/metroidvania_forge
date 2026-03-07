@@ -1,5 +1,6 @@
-res://level/00_forest
 res://00_global/visual_effects/hit_particle_settings
+res://level/props
+res://level/00_forest
 res://00_global/visual_effects
 res://player/scripts
 res://title_screen
@@ -13,7 +14,6 @@ res://general/save_point
 res://general/player_spawn
 res://materials_and_shaders
 res://level/tilesets/sprites
-res://level/props
 res://level/tilesets
 res://00_global/scene_manager
 res://player

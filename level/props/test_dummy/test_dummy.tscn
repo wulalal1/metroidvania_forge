@@ -1,0 +1,45 @@
+[gd_scene load_steps=11 format=3 uid="uid://chgocaxqhxlgs"]
+
+[ext_resource type="Script" uid="uid://bsedoenp06gp6" path="res://level/props/test_dummy/test_dummy.gd" id="1_fopco"]
+[ext_resource type="Script" uid="uid://dpmqf183mx5sj" path="res://00_global/visual_effects/hit_particle_settings.gd" id="2_4vmx3"]
+[ext_resource type="Texture2D" uid="uid://8jkst4d62cuw" path="res://general/sprites/props_destructible.png" id="2_cybv0"]
+[ext_resource type="Script" uid="uid://c8kuda8wrkqje" path="res://general/script/damage_area.gd" id="3_pwmcu"]
+[ext_resource type="Resource" uid="uid://by4yj45mta71j" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_small.tres" id="3_sq8yk"]
+[ext_resource type="Resource" uid="uid://dvto1g1fvd75o" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_medium.tres" id="4_sq8yk"]
+[ext_resource type="AudioStream" uid="uid://c0av5dof81pwf" path="res://general/audio/hit.wav" id="7_bkvov"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vmx3"]
+atlas = ExtResource("2_cybv0")
+region = Rect2(17, 10, 14, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq8yk"]
+atlas = ExtResource("2_cybv0")
+region = Rect2(16, 51, 16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkvov"]
+size = Vector2(20, 30)
+
+[node name="TestDummy" type="Node2D"]
+script = ExtResource("1_fopco")
+particles = Array[ExtResource("2_4vmx3")]([ExtResource("3_sq8yk"), ExtResource("4_sq8yk")])
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = SubResource("AtlasTexture_4vmx3")
+offset = Vector2(0, -19)
+
+[node name="BaseSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = SubResource("AtlasTexture_sq8yk")
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_pwmcu")
+audio = ExtResource("7_bkvov")
+metadata/_custom_type_script = "uid://c8kuda8wrkqje"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_bkvov")
+debug_color = Color(0, 0.6, 0.69803923, 0)
