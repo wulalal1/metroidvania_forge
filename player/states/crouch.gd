@@ -11,12 +11,16 @@ func enter() -> void:
 	player.animation_player.play("crouch")
 	player.collision_stand.disabled = true
 	player.collision_crouch.disabled = false
+	player.da_stand.disabled = true
+	player.da_crouch.disabled = false
 	pass
 
 #当我们退出这个状态时会发生什么?
 func exit() -> void:
 	player.collision_stand.disabled = false
 	player.collision_crouch.disabled = true
+	player.da_stand.disabled = false
+	player.da_crouch.disabled = true
 	pass
 
 #当按下按键处理情况会发生什么?
