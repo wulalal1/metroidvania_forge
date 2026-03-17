@@ -32,7 +32,8 @@ var max_hp : float = 20 :
 		Messages.player_healed_changed.emit(hp,max_hp)
 		
 var dash : bool = false
-var double_jump : bool = false
+var double_jump : bool = true
+var jump_count : int = 0
 var ground_slam : bool =false
 var morph_roll : bool = false
 
@@ -183,6 +184,8 @@ func _on_player_healed(amount : float) -> void:
 	pass
 
 func _on_damage_taken(attack_area : AttackArea) -> void:
+	if current_state == PlayerStateDeath:
+		return
 	hp -= attack_area.damage
 	damage_taken.emit()
 	pass

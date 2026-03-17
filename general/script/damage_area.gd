@@ -10,7 +10,7 @@ func take_damage(attack_area : AttackArea) -> void:
 		Audio.play_spatial_sound(audio,global_position)
 	pass
 
-func mke_invulnerable(duration: float = 1.0) -> void:
+func make_invulnerable(duration: float = 1.0) -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	await get_tree().create_timer(duration).timeout
 	process_mode = Node.PROCESS_MODE_INHERIT

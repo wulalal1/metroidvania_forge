@@ -1,0 +1,63 @@
+[gd_scene load_steps=13 format=3 uid="uid://cfpl0xe2p3tfy"]
+
+[ext_resource type="Script" uid="uid://bsedoenp06gp6" path="res://level/props/test_dummy/test_dummy.gd" id="1_fanil"]
+[ext_resource type="Script" uid="uid://dpmqf183mx5sj" path="res://00_global/visual_effects/hit_particle_settings.gd" id="2_c0u77"]
+[ext_resource type="Resource" uid="uid://by4yj45mta71j" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_small.tres" id="3_xirfy"]
+[ext_resource type="Resource" uid="uid://dvto1g1fvd75o" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_medium.tres" id="4_g3k5d"]
+[ext_resource type="Texture2D" uid="uid://8jkst4d62cuw" path="res://general/sprites/props_destructible.png" id="5_3ejxb"]
+[ext_resource type="Script" uid="uid://d01wd8k57m1w5" path="res://general/script/hazard_area.gd" id="6_c0u77"]
+[ext_resource type="Script" uid="uid://c8kuda8wrkqje" path="res://general/script/damage_area.gd" id="6_i0gbf"]
+[ext_resource type="AudioStream" uid="uid://c0av5dof81pwf" path="res://general/audio/hit.wav" id="7_hbuk6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vmx3"]
+atlas = ExtResource("5_3ejxb")
+region = Rect2(34, 16, 12, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xirfy"]
+size = Vector2(14, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq8yk"]
+atlas = ExtResource("5_3ejxb")
+region = Rect2(16, 51, 16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkvov"]
+size = Vector2(20, 30)
+
+[node name="SpikeDummy" type="Node2D"]
+script = ExtResource("1_fanil")
+particles = Array[ExtResource("2_c0u77")]([ExtResource("3_xirfy"), ExtResource("4_g3k5d")])
+base_wobble_angle = 9.0
+wobble_speed = 0.25
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+texture = SubResource("AtlasTexture_4vmx3")
+offset = Vector2(0, -19)
+
+[node name="HazardArea" type="Area2D" parent="BodySprite"]
+position = Vector2(0, -21)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("6_c0u77")
+metadata/_custom_type_script = "uid://d01wd8k57m1w5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodySprite/HazardArea"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_xirfy")
+debug_color = Color(0.7019608, 0, 0.12941177, 0.12941177)
+
+[node name="BaseSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = SubResource("AtlasTexture_sq8yk")
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("6_i0gbf")
+audio = ExtResource("7_hbuk6")
+metadata/_custom_type_script = "uid://c8kuda8wrkqje"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_bkvov")
+debug_color = Color(0, 0.6, 0.69803923, 0)

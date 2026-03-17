@@ -10,7 +10,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vmx3"]
 atlas = ExtResource("2_cybv0")
-region = Rect2(17, 10, 14, 38)
+region = Rect2(17, 9, 14, 39)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sq8yk"]
 atlas = ExtResource("2_cybv0")
@@ -19,12 +19,12 @@ region = Rect2(16, 51, 16, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkvov"]
 size = Vector2(20, 30)
 
-[node name="TestDummy" type="Node2D"]
+[node name="SpikeDummy" type="Node2D"]
 script = ExtResource("1_fopco")
 particles = Array[ExtResource("2_4vmx3")]([ExtResource("3_sq8yk"), ExtResource("4_sq8yk")])
 
 [node name="BodySprite" type="Sprite2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(0, -7)
 texture = SubResource("AtlasTexture_4vmx3")
 offset = Vector2(0, -19)
 

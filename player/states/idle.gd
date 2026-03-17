@@ -7,6 +7,7 @@ func init() -> void:
 func enter() -> void:
 	#play animation
 	player.animation_player.play("idle")
+	player.jump_count = 0
 	pass
 
 #当我们退出这个状态时会发生什么?
