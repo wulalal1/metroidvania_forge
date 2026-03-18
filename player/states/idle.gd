@@ -8,6 +8,7 @@ func enter() -> void:
 	#play animation
 	player.animation_player.play("idle")
 	player.jump_count = 0
+	player.dash_count = 0
 	pass
 
 #当我们退出这个状态时会发生什么?
@@ -17,6 +18,8 @@ func exit() -> void:
 #当按下按键处理情况会发生什么?
 func handle_input( _event : InputEvent) -> PlayerState:
 	#handle input
+	if _event.is_action_pressed("dash") and player.can_dash():
+		return dash
 	if _event.is_action_pressed("attack"):
 		return attack
 	if _event.is_action_pressed("jump"):

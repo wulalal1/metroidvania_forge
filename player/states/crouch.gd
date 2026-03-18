@@ -26,6 +26,8 @@ func exit() -> void:
 #当按下按键处理情况会发生什么?
 func handle_input( _event : InputEvent) -> PlayerState:
 	#handle input
+	if _event.is_action_pressed("dash") and player.can_dash():
+		return dash
 	if _event.is_action_pressed("attack"):
 		return attack
 	if _event.is_action_pressed("jump"):

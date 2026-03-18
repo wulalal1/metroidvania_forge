@@ -1,5 +1,5 @@
-Node2D
 Node
+Node2D
 Button
 HBoxContainer
 Label
@@ -12,4 +12,3 @@ HazardArea
 StaticBody2D
 Sprite2D
 Breakable
-TileMapLayer

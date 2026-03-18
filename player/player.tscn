@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cty21f0k4culd"]
+[gd_scene load_steps=39 format=3 uid="uid://cty21f0k4culd"]
 
 [ext_resource type="Script" uid="uid://cllkni11dk04n" path="res://player/scripts/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://b0r8ecegc0nsf" path="res://player/sprites/hero.png" id="2_boad6"]
@@ -14,7 +14,9 @@
 [ext_resource type="Script" uid="uid://oflhxd63uf8o" path="res://player/states/take_damage.gd" id="8_wodsf"]
 [ext_resource type="Texture2D" uid="uid://0kv0xrjvmyp7" path="res://player/sprites/input_icons.png" id="9_8t03j"]
 [ext_resource type="Script" uid="uid://diig4aj7dvab0" path="res://player/states/death.gd" id="9_tqiix"]
+[ext_resource type="Script" uid="uid://cde6wn6vv4qhv" path="res://player/states/dash.gd" id="10_65viv"]
 [ext_resource type="Script" uid="uid://cpvdxarsaw6fa" path="res://general/script/attack_area.gd" id="11_2ieo8"]
+[ext_resource type="Script" uid="uid://duvkjllusbto2" path="res://player/scripts/player_sprite.gd" id="12_x7c3f"]
 [ext_resource type="Script" uid="uid://c8kuda8wrkqje" path="res://general/script/damage_area.gd" id="14_kb6p2"]
 [ext_resource type="AudioStream" uid="uid://201uj8vd81hi" path="res://general/audio/aargh.wav" id="16_32hag"]
 [ext_resource type="AudioStream" uid="uid://hohrn2p6b08c" path="res://general/audio/jump.wav" id="18_c35mf"]
@@ -284,12 +286,28 @@ tracks/0/keys = {
 "values": [30]
 }
 
+[sub_resource type="Animation" id="Animation_65viv"]
+resource_name = "dash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [29]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rgyib"]
 _data = {
 &"RESET": SubResource("Animation_rgyib"),
 &"attack": SubResource("Animation_ebec5"),
 &"attack_2": SubResource("Animation_yllr7"),
 &"crouch": SubResource("Animation_2ieo8"),
+&"dash": SubResource("Animation_65viv"),
 &"death": SubResource("Animation_32hag"),
 &"idle": SubResource("Animation_boad6"),
 &"jump": SubResource("Animation_8t03j"),
@@ -356,11 +374,16 @@ script = ExtResource("8_wodsf")
 unique_name_in_owner = true
 script = ExtResource("9_tqiix")
 
+[node name="Dash" type="Node" parent="States"]
+unique_name_in_owner = true
+script = ExtResource("10_65viv")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, -39)
 texture = ExtResource("2_boad6")
 hframes = 16
 vframes = 4
+script = ExtResource("12_x7c3f")
 
 [node name="AttackSprite2D" type="Sprite2D" parent="Sprite2D"]
 unique_name_in_owner = true

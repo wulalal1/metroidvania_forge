@@ -29,8 +29,11 @@ func exit() -> void:
 
 #当按下按键处理情况会发生什么?
 func handle_input( _event : InputEvent) -> PlayerState:
+	
 	if _event.is_action_pressed("attack"):
 		timer = combo_time_window
+	if _event.is_action_pressed("dash") and player.can_dash():
+		return dash
 	#if _event.is_action_pressed("jump"):
 		#return jump
 	return null
