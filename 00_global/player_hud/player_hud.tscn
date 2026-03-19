@@ -23,6 +23,8 @@ script/source = "extends Button
 @export var particle_settings : HitParticleSettings
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#if not is_connected(\"pressed\", _on_pressed):
+		#pressed.connect(_on_pressed)
 	pressed.connect(_on_pressed)
 	pass # Replace with function body.
 
@@ -33,7 +35,13 @@ func _on_pressed() -> void:
 	#VisualEffects.hit_particles( pos,Vector2(1,0),particle_settings )
 	#PlayerHud.show_game_over()
 	var player : Player = get_tree().get_first_node_in_group(\"Player\")
-	player.dash = !player.dash
+	player.ground_slam = !player.ground_slam
+
+			## 打印一下当前的真实状态
+	#print(\"--- 按钮操作 ---\")
+	#print(\"玩家技能开关现在是: \", player.ground_slam)
+#
+	#print(\"错误：场景里找不到 Player 分组！\")
 	pass
 "
 
@@ -88,11 +96,11 @@ texture_progress = SubResource("GradientTexture2D_4jtec")
 
 [node name="Button2" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 362.0
+offset_left = 336.0
 offset_top = 8.0
-offset_right = 478.0
+offset_right = 474.0
 offset_bottom = 31.0
-text = "give dash"
+text = "give Ground Slam"
 script = SubResource("GDScript_vb1bs")
 particle_settings = ExtResource("3_26715")
 

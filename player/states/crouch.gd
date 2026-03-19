@@ -17,10 +17,10 @@ func enter() -> void:
 
 #当我们退出这个状态时会发生什么?
 func exit() -> void:
-	player.collision_stand.disabled = false
-	player.collision_crouch.disabled = true
-	player.da_stand.disabled = false
-	player.da_crouch.disabled = true
+	player.collision_stand.set_deferred( "disabled",false)
+	player.collision_crouch.set_deferred( "disabled",true)
+	player.da_stand.set_deferred( "disabled",false)
+	player.da_crouch.set_deferred( "disabled",true)
 	pass
 
 #当按下按键处理情况会发生什么?

@@ -14,7 +14,8 @@ var next_state : PlayerState = null
 @onready var attack: PlayerStateAttack = %Attack
 @onready var take_damage: PlayerTakeDamageState = %TakeDamage
 @onready var death: PlayerStateDeath = %Death
-@onready var dash: Node = %Dash
+@onready var ground_slam: PlayerStateGroundSlam = %GroundSlam
+@onready var dash: PlayerStateDash = %Dash
 
 #endregion
 

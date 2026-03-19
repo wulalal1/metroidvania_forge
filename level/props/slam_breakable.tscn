@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://8at5iecy2pwv"]
+
+[ext_resource type="Texture2D" uid="uid://n8sl2t7u5s7p" path="res://level/tilesets/sprites/forgotten_forest_example_tileset.png" id="1_wpvov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpvov"]
+size = Vector2(80, 14)
+
+[node name="SlamBreakable" type="StaticBody2D"]
+collision_layer = 129
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wpvov")
+region_enabled = true
+region_rect = Rect2(537, 352, 80, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_wpvov")
