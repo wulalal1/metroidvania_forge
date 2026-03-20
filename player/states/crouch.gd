@@ -17,6 +17,7 @@ func enter() -> void:
 
 #当我们退出这个状态时会发生什么?
 func exit() -> void:
+	#print("退出了下蹲状态，当前 direction.y 是: ", player.direction.y)
 	player.collision_stand.set_deferred( "disabled",false)
 	player.collision_crouch.set_deferred( "disabled",true)
 	player.da_stand.set_deferred( "disabled",false)
@@ -36,16 +37,19 @@ func handle_input( _event : InputEvent) -> PlayerState:
 			player.position.y += 4
 			return fall
 		return jump
+	if _event.is_action_pressed("action") and player.can_morph():
+		return ball
 	return next_state
 	
 	
 func process(_delta: float) -> PlayerState:
 	if player.direction.y < 0.5:
 		return idle
-	return next_state
+	return null
 
 func physics_process(_delta: float) -> PlayerState:
 	player.velocity.x -= player.velocity.x * deceleration_rate * _delta
 	if player.is_on_floor() == false:
+		#print("因为离开地面退出了下蹲！") # 加这一行
 		return fall
 	return next_state

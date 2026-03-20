@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cty21f0k4culd"]
+[gd_scene load_steps=44 format=3 uid="uid://cty21f0k4culd"]
 
 [ext_resource type="Script" uid="uid://cllkni11dk04n" path="res://player/scripts/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://b0r8ecegc0nsf" path="res://player/sprites/hero.png" id="2_boad6"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://cde6wn6vv4qhv" path="res://player/states/dash.gd" id="10_65viv"]
 [ext_resource type="Script" uid="uid://cpvdxarsaw6fa" path="res://general/script/attack_area.gd" id="11_2ieo8"]
 [ext_resource type="Script" uid="uid://bgxlj78cn31k0" path="res://player/states/ground_slam.gd" id="11_bjvpn"]
+[ext_resource type="Script" uid="uid://dswuc8xcd6t7n" path="res://player/states/ball.gd" id="12_s7qer"]
 [ext_resource type="Script" uid="uid://duvkjllusbto2" path="res://player/scripts/player_sprite.gd" id="12_x7c3f"]
 [ext_resource type="Script" uid="uid://c8kuda8wrkqje" path="res://general/script/damage_area.gd" id="14_kb6p2"]
 [ext_resource type="AudioStream" uid="uid://201uj8vd81hi" path="res://general/audio/aargh.wav" id="16_32hag"]
@@ -187,6 +188,24 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_s7qer"]
+resource_name = "ball"
+length = 0.25
+loop_mode = 1
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07692308, 0.15384616),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [44, 45, 46]
+}
+
 [sub_resource type="Animation" id="Animation_2ieo8"]
 resource_name = "crouch"
 length = 0.2
@@ -322,6 +341,7 @@ _data = {
 &"RESET": SubResource("Animation_rgyib"),
 &"attack": SubResource("Animation_ebec5"),
 &"attack_2": SubResource("Animation_yllr7"),
+&"ball": SubResource("Animation_s7qer"),
 &"crouch": SubResource("Animation_2ieo8"),
 &"dash": SubResource("Animation_65viv"),
 &"death": SubResource("Animation_32hag"),
@@ -403,8 +423,12 @@ unique_name_in_owner = true
 script = ExtResource("11_bjvpn")
 velocity = 600.0
 
+[node name="Ball" type="Node" parent="States"]
+unique_name_in_owner = true
+script = ExtResource("12_s7qer")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, -39)
+position = Vector2(0, -39)
 texture = ExtResource("2_boad6")
 hframes = 16
 vframes = 4
@@ -418,14 +442,12 @@ texture = ExtResource("8_ebec5")
 hframes = 8
 
 [node name="CollisionStand" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -24)
 scale = Vector2(1, 1.2000009)
 shape = SubResource("CapsuleShape2D_boad6")
 debug_color = Color(0, 0.6, 0.69803923, 0.29411766)
 
 [node name="CollisionCrouch" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_rgyib")
 disabled = true
@@ -457,6 +479,7 @@ max_results = 12
 collision_mask = 2
 
 [node name="GroundSlamShapeCast" type="ShapeCast2D" parent="."]
+visible = false
 position = Vector2(1, -3)
 scale = Vector2(0.9599981, 1)
 enabled = false
@@ -472,6 +495,7 @@ position = Vector2(0, -40)
 script = ExtResource("8_8t03j")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(0, -30)
 color = Color(0.98878354, 0.65930486, 0.44887254, 1)
 energy = 0.3
@@ -489,6 +513,7 @@ frame = 12
 
 [node name="AttackArea" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(7, -24)
 collision_layer = 0
 collision_mask = 96
@@ -502,6 +527,7 @@ debug_color = Color(0.70196074, 0, 0.19537027, 0.41960785)
 
 [node name="GroundSlamAttackArea" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 collision_layer = 0
 collision_mask = 96
 monitorable = false
@@ -549,3 +575,22 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("19_65viv")
 bus = &"SFX"
+
+[node name="BallRays" type="Node2D" parent="."]
+
+[node name="BallRayUp" type="RayCast2D" parent="BallRays"]
+unique_name_in_owner = true
+position = Vector2(0, -4)
+enabled = false
+exclude_parent = false
+target_position = Vector2(0, -45)
+hit_from_inside = true
+
+[node name="BallRayDown" type="RayCast2D" parent="BallRays"]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+enabled = false
+exclude_parent = false
+target_position = Vector2(0, 6)
+collision_mask = 3
+hit_from_inside = true

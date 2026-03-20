@@ -48,10 +48,11 @@ func handle_input( _event : InputEvent) -> PlayerState:
 			player.jump_count = 0
 			return jump
 		elif player.jump_count <= 1 and player.double_jump:
-			return jump
-			
+			return jump	
 		else:
 			buffer_timer = jump_buffer_time
+	if _event.is_action_pressed("action") and player.can_morph():
+		return ball
 	return next_state
 	
 	

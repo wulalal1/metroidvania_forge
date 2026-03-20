@@ -36,7 +36,8 @@ var dash_count : int = 0
 var double_jump : bool = true
 var jump_count : int = 0
 var ground_slam : bool =true
-var morph_roll : bool = false
+var morph_roll : bool = true
+var can_intercat : bool = false
 
 #endregion
 
@@ -66,6 +67,7 @@ func _ready() -> void:
 	self.call_deferred("reparent",get_tree().root)
 	Messages.player_healed.connect(_on_player_healed)
 	Messages.back_to_title_screen.connect(queue_free)
+	Messages.input_hint_changed.connect(_on_input_hint_changed)
 	damage_area.damae_taken.connect(_on_damage_taken)
 	hp = max_hp
 	pass
@@ -190,7 +192,20 @@ func _on_damage_taken(attack_area : AttackArea) -> void:
 	hp -= attack_area.damage
 	damage_taken.emit()
 	pass
+
+func _on_input_hint_changed(prompt_name : String) -> void:
+	if prompt_name == "interact":
+		can_intercat = true
+	else:
+		can_intercat = false
+	pass	
+
 func can_dash() -> bool:
 	if dash == false or dash_count > 0:
+		return false
+	return true
+	
+func can_morph() -> bool:
+	if morph_roll == false or can_intercat == true :
 		return false
 	return true

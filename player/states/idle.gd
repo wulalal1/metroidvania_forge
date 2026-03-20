@@ -24,7 +24,9 @@ func handle_input( _event : InputEvent) -> PlayerState:
 		return attack
 	if _event.is_action_pressed("jump"):
 		return jump
-	return next_state
+	if _event.is_action_pressed("action") and player.can_morph():
+		return ball
+	return null
 	
 	
 func process(_delta: float) -> PlayerState:
@@ -32,7 +34,7 @@ func process(_delta: float) -> PlayerState:
 		return run
 	elif player.direction.y > 0.5:
 		return crouch
-	return next_state
+	return null
 
 func physics_process(_delta: float) -> PlayerState:
 	player.velocity.x = 0

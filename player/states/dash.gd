@@ -38,6 +38,8 @@ func exit() -> void:
 #当按下按键处理情况会发生什么?
 func handle_input( _event : InputEvent) -> PlayerState:
 	#handle input
+	if _event.is_action_pressed("action") and player.can_morph():
+		return ball
 	return null
 	
 	
