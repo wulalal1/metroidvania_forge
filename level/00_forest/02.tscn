@@ -100,7 +100,6 @@ tile_set = ExtResource("1_4nor7")
 collision_enabled = false
 
 [node name="Sprite2D" type="Sprite2D" parent="BGParallaxLayers"]
-visible = false
 position = Vector2(382, 121.00001)
 scale = Vector2(3.671875, 0.95312494)
 texture = SubResource("GradientTexture2D_wkws7")

@@ -1,0 +1,147 @@
+[gd_scene load_steps=16 format=3 uid="uid://b43e6exxybydk"]
+
+[ext_resource type="Script" uid="uid://btevx0fol3eol" path="res://enemies/slime/slime.gd" id="1_u2l51"]
+[ext_resource type="Texture2D" uid="uid://bt12npuxx7s1t" path="res://enemies/slime/slime.png" id="2_2ui2u"]
+[ext_resource type="AudioStream" uid="uid://bo3el5aj7k5th" path="res://enemies/slime/slime_death.wav" id="2_bkm6f"]
+[ext_resource type="Script" uid="uid://d01wd8k57m1w5" path="res://general/script/hazard_area.gd" id="3_bkm6f"]
+[ext_resource type="Script" uid="uid://c8kuda8wrkqje" path="res://general/script/damage_area.gd" id="4_5ctnu"]
+[ext_resource type="AudioStream" uid="uid://b8jhai4c6014k" path="res://enemies/slime/slime_hit.wav" id="5_kag0e"]
+[ext_resource type="Script" uid="uid://dvqyyk2w45n47" path="res://enemies/scripts/edge_detector.gd" id="7_bkm6f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_knvw0"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="Animation" id="Animation_u2l51"]
+resource_name = "wak"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_2ui2u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bkm6f"]
+resource_name = "stun"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16]
+}
+
+[sub_resource type="Animation" id="Animation_5ctnu"]
+resource_name = "death"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11, 17]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kag0e"]
+_data = {
+&"RESET": SubResource("Animation_2ui2u"),
+&"death": SubResource("Animation_5ctnu"),
+&"stun": SubResource("Animation_bkm6f"),
+&"wak": SubResource("Animation_u2l51")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkm6f"]
+size = Vector2(26, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yuirh"]
+size = Vector2(26, 16)
+
+[node name="Slime" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_u2l51")
+face_left_on_start = true
+death_sound = ExtResource("2_bkm6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_2ui2u")
+hframes = 6
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_knvw0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kag0e")
+}
+
+[node name="DamageArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("4_5ctnu")
+audio = ExtResource("5_kag0e")
+metadata/_custom_type_script = "uid://c8kuda8wrkqje"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_bkm6f")
+
+[node name="HazardArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("3_bkm6f")
+metadata/_custom_type_script = "uid://d01wd8k57m1w5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_yuirh")
+debug_color = Color(0.6900825, 0.009204299, 0.07552845, 0.41960785)
+
+[node name="EdegeDetector" type="RayCast2D" parent="."]
+position = Vector2(7, -2)
+target_position = Vector2(0, 8)
+script = ExtResource("7_bkm6f")
+metadata/_custom_type_script = "uid://dvqyyk2w45n47"
