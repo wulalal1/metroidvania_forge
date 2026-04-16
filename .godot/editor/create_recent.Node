@@ -1,3 +1,7 @@
+EnemyStateMachine
+AnimationPlayer
+Sprite2D
+CharacterBody2D
 EdegeDetector
 MusicAutoTrigger
 TileMapLayer
@@ -7,9 +11,5 @@ Slime
 CollisionShape2D
 DamageArea
 HazardArea
-AnimationPlayer
-Sprite2D
-CharacterBody2D
 TextureRect
 VBoxContainer
-Node2D

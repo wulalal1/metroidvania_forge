@@ -1,8 +1,12 @@
 res://default_bus_layout.tres
-res://playground.tscn
 res://00_global/visual_effects/hit_particle_settings/hit_wood_large.tres
 res://00_global/visual_effects/hit_particle_settings/hit_wood_medium.tres
 res://00_global/visual_effects/hit_particle_settings/hit_wood_small.tres
 res://level/tilesets/forgotten_forest.tres
 res://materials_and_shaders/fog_fade_shader.tres
-res://00_global/audio/audio.gd
+res://enemies/slime_2/slime_2.tscn
+res://enemies/scripts/enemy.gd
+res://enemies/scripts/blackboard.gd
+res://enemies/scripts/decision_engine.gd
+res://enemies/scripts/EnemyState.gd
+res://enemies/scripts/enemy_state_machine.gd
