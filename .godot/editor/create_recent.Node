@@ -1,3 +1,8 @@
+EdgeSensor
+ESDeath
+ESStun
+ESWalk
+DecisionEngineBasic
 EnemyStateMachine
 AnimationPlayer
 Sprite2D
@@ -8,8 +13,3 @@ TileMapLayer
 Parallax2D
 LevelBounds
 Slime
-CollisionShape2D
-DamageArea
-HazardArea
-TextureRect
-VBoxContainer

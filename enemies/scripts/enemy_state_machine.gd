@@ -17,7 +17,7 @@ func setup(e:Enemy,b:BlackBoard) -> void:
 	for c in get_children():
 		if c is EnemyState:
 			c.enemy = enemy
-			c.bloakboard = blackboard
+			c.blackboard = blackboard
 			c.state_machine = self
 			states.append(c)
 	current_state.enter()

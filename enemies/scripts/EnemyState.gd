@@ -3,7 +3,7 @@ class_name EnemyState extends Node
 @export var animation_name : String
 var state_machine : EnemyStateMachine
 var enemy : Enemy
-var bloakboard : BlackBoard
+var blackboard : BlackBoard
 
 func enter() -> void: pass
 func re_enter() -> void: pass

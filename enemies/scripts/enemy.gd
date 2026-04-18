@@ -10,8 +10,8 @@ signal  was_killed()
 @export var affected_by_gravity : bool = true
 @export var face_left_on_start : bool = false
 
-@export_category("Audio")
-@export var death_sound : AudioStream
+#@export_category("Audio")
+#@export var death_sound : AudioStream
 
 var sprite : Sprite2D
 var animation : AnimationPlayer
@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	pass
 
-func change_dir( new_dir : int ) -> void:
+func change_dir( new_dir : float ) -> void:
 	blackboard.dir = new_dir
 	direction_changed.emit(new_dir)
 	if sprite:
@@ -82,6 +82,7 @@ func  play_animation(anim_name: String) -> void:
 		printerr("Animation misssing: ",anim_name)
 
 func _on_damage_taken(a : AttackArea) -> void:
+	blackboard.damage_source = a
 	blackboard.health -= a.damage
 	if blackboard.health <= 0:
 		damage_area.queue_free()

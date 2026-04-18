@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bnfbe6fuxao67"]
+[gd_scene load_steps=11 format=4 uid="uid://bnfbe6fuxao67"]
 
 [ext_resource type="TileSet" uid="uid://du1gpbscf43nr" path="res://level/tilesets/forgotten_forest.tres" id="1_wd8om"]
 [ext_resource type="Script" uid="uid://crir7djhqs0l2" path="res://general/script/level_bound.gd" id="2_il8as"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cl2e45pj0gfus" path="res://level/props/plant.tscn" id="7_t3ulj"]
 [ext_resource type="PackedScene" uid="uid://b43e6exxybydk" path="res://enemies/slime/slime.tscn" id="8_t3ulj"]
 [ext_resource type="Script" uid="uid://bqpwu3ktipoto" path="res://music/music_auto_trigger.gd" id="9_v13ek"]
+[ext_resource type="PackedScene" uid="uid://ddhn011gkfqw6" path="res://enemies/slime_2/slime_2.tscn" id="10_njcul"]
 
 [node name="07" type="Node2D"]
 
@@ -33,7 +34,7 @@ tile_map_data = PackedByteArray("AAACAAEAAQAXAAkAAAACAAIAAQAXAAoAAAACAAMAAQAXAAs
 tile_set = ExtResource("1_wd8om")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAADAAMAAQAQAAYAAAAEAAMAAQARAAYAAAAFAAMAAQASAAYAAAAGAAUAAQAQAAYAAAAHAAUAAQARAAYAAAAIAAUAAQASAAYAAAAJAAMAAQAQAAYAAAAKAAMAAQARAAYAAAALAAMAAQASAAYAAAA=")
+tile_map_data = PackedByteArray("AAADAAMAAQAQAAYAAAAEAAMAAQARAAYAAAAFAAMAAQASAAYAAAAJAAMAAQAQAAYAAAAKAAMAAQARAAYAAAALAAMAAQASAAYAAAAHAAUAAQAQAAYAAAAIAAUAAQARAAYAAAAJAAUAAQASAAYAAAA=")
 tile_set = ExtResource("1_wd8om")
 
 [node name="LevelBounds" type="Node2D" parent="."]
@@ -43,16 +44,16 @@ width = 736
 metadata/_custom_type_script = "uid://crir7djhqs0l2"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_ly1mx")]
-position = Vector2(235, 195)
+position = Vector2(211, 195)
 
 [node name="SpikeDummy2" parent="." instance=ExtResource("4_b6inf")]
 position = Vector2(343, 97)
 
 [node name="SpikeDummy" parent="." instance=ExtResource("4_frv4h")]
-position = Vector2(138, 97)
+position = Vector2(116, 97)
 
 [node name="Crate" parent="." instance=ExtResource("5_b6inf")]
-position = Vector2(374, 212)
+position = Vector2(391, 212)
 
 [node name="Crate2" parent="." instance=ExtResource("5_b6inf")]
 position = Vector2(154, 213)
@@ -63,8 +64,11 @@ position = Vector2(462, 212)
 rotation = -0.25520855
 
 [node name="Slime" parent="." instance=ExtResource("8_t3ulj")]
-position = Vector2(217, 166)
+position = Vector2(167, 98)
 
 [node name="MusicAutoTrigger" type="Node" parent="."]
 script = ExtResource("9_v13ek")
 metadata/_custom_type_script = "uid://bqpwu3ktipoto"
+
+[node name="Slime2" parent="." instance=ExtResource("10_njcul")]
+position = Vector2(264, 162)
