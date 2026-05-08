@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ddhn011gkfqw6"]
+[gd_scene load_steps=30 format=3 uid="uid://ddhn011gkfqw6"]
 
 [ext_resource type="Script" uid="uid://1hh5cxnr8587" path="res://enemies/scripts/enemy.gd" id="1_7q48c"]
 [ext_resource type="Texture2D" uid="uid://bt12npuxx7s1t" path="res://enemies/slime/slime.png" id="2_7cba3"]
@@ -13,6 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://bo3el5aj7k5th" path="res://enemies/slime/slime_death.wav" id="11_ovel5"]
 [ext_resource type="Script" uid="uid://xc54qd3q8yn6" path="res://enemies/scripts/sensors/edge_sensor.gd" id="12_ovel5"]
 [ext_resource type="Script" uid="uid://bioe54vnv8g64" path="res://enemies/scripts/sensors/player_sensor.gd" id="13_3jlja"]
+[ext_resource type="Script" uid="uid://dbh873mkpjec2" path="res://enemies/scripts/enemy_hit_particles.gd" id="14_dq0sk"]
+[ext_resource type="Script" uid="uid://dpmqf183mx5sj" path="res://00_global/visual_effects/hit_particle_settings.gd" id="15_uucha"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3lcx"]
 radius = 8.0
@@ -120,6 +122,37 @@ func _physics_process(delta: float) -> void:
 	pass
 "
 
+[sub_resource type="Gradient" id="Gradient_dq0sk"]
+offsets = PackedFloat32Array(0.4651163, 1)
+colors = PackedColorArray(0.98199487, 0.9688971, 0.9688971, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uucha"]
+gradient = SubResource("Gradient_dq0sk")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.507772, 0.507772)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Resource" id="Resource_qpicr"]
+script = ExtResource("15_uucha")
+count = 12
+color = Color(0.006456087, 0.6228548, 0.95484024, 1)
+texture = SubResource("GradientTexture2D_uucha")
+metadata/_custom_type_script = "uid://dpmqf183mx5sj"
+
+[sub_resource type="Resource" id="Resource_vpnvx"]
+script = ExtResource("15_uucha")
+count = 8
+color = Color(0.9045336, 0.9417285, 0.9616289, 1)
+metadata/_custom_type_script = "uid://dpmqf183mx5sj"
+
+[sub_resource type="Resource" id="Resource_7lkcl"]
+script = ExtResource("15_uucha")
+count = 24
+color = Color(0.006456087, 0.6228548, 0.95484024, 1)
+metadata/_custom_type_script = "uid://dpmqf183mx5sj"
+
 [node name="Slime2" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 3
@@ -209,3 +242,10 @@ polygon = PackedVector2Array(0, 0, 256, -96, 256, 96)
 offset_right = 40.0
 offset_bottom = 15.0
 script = SubResource("GDScript_3jlja")
+
+[node name="EnemyHitPatrticles" type="Marker2D" parent="."]
+position = Vector2(0, -7)
+script = ExtResource("14_dq0sk")
+hit_particles = Array[ExtResource("15_uucha")]([SubResource("Resource_qpicr")])
+death_particles = Array[ExtResource("15_uucha")]([SubResource("Resource_vpnvx"), SubResource("Resource_7lkcl")])
+metadata/_custom_type_script = "uid://dbh873mkpjec2"

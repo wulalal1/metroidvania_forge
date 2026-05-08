@@ -1,10 +1,9 @@
 res://default_bus_layout.tres
-res://enemies/slime_2/slime_2.tscn
+res://level/00_forest/07.tscn
 res://00_global/visual_effects/hit_particle_settings/hit_wood_large.tres
 res://00_global/visual_effects/hit_particle_settings/hit_wood_medium.tres
 res://00_global/visual_effects/hit_particle_settings/hit_wood_small.tres
 res://level/tilesets/forgotten_forest.tres
 res://materials_and_shaders/fog_fade_shader.tres
-res://enemies/scripts/sensors/player_sensor.gd
-res://level/00_forest/07.tscn
-res://enemies/scripts/enemy.gd
+res://enemies/scripts/enemy_hit_particles.gd
+res://enemies/slime_2/slime_2.tscn
