@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bnfbe6fuxao67"]
+[gd_scene load_steps=23 format=4 uid="uid://bnfbe6fuxao67"]
 
 [ext_resource type="TileSet" uid="uid://du1gpbscf43nr" path="res://level/tilesets/forgotten_forest.tres" id="1_wd8om"]
 [ext_resource type="Script" uid="uid://crir7djhqs0l2" path="res://general/script/level_bound.gd" id="2_il8as"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://dpmqf183mx5sj" path="res://00_global/visual_effects/hit_particle_settings.gd" id="13_4hya2"]
 [ext_resource type="Script" uid="uid://c8kuda8wrkqje" path="res://general/script/damage_area.gd" id="14_lswfi"]
 [ext_resource type="AudioStream" uid="uid://b8jhai4c6014k" path="res://enemies/slime/slime_hit.wav" id="15_api2s"]
+[ext_resource type="PackedScene" uid="uid://40st5uhu6ds8" path="res://general/health_pickup/health_pickup.tscn" id="16_eillp"]
 
 [sub_resource type="Gradient" id="Gradient_dq0sk"]
 offsets = PackedFloat32Array(0.4651163, 1)
@@ -83,7 +84,7 @@ width = 736
 metadata/_custom_type_script = "uid://crir7djhqs0l2"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_ly1mx")]
-position = Vector2(211, 195)
+position = Vector2(315, 196)
 
 [node name="SpikeDummy2" parent="." instance=ExtResource("4_b6inf")]
 position = Vector2(343, 97)
@@ -137,3 +138,6 @@ metadata/_custom_type_script = "uid://c8kuda8wrkqje"
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/DamageArea"]
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_3jst0")
+
+[node name="HealthPickup" parent="." instance=ExtResource("16_eillp")]
+position = Vector2(485, 175)

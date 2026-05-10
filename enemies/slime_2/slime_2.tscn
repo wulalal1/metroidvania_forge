@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ddhn011gkfqw6"]
+[gd_scene load_steps=33 format=3 uid="uid://ddhn011gkfqw6"]
 
 [ext_resource type="Script" uid="uid://1hh5cxnr8587" path="res://enemies/scripts/enemy.gd" id="1_7q48c"]
 [ext_resource type="Texture2D" uid="uid://bt12npuxx7s1t" path="res://enemies/slime/slime.png" id="2_7cba3"]
@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://bioe54vnv8g64" path="res://enemies/scripts/sensors/player_sensor.gd" id="13_3jlja"]
 [ext_resource type="Script" uid="uid://dbh873mkpjec2" path="res://enemies/scripts/enemy_hit_particles.gd" id="14_dq0sk"]
 [ext_resource type="Script" uid="uid://dpmqf183mx5sj" path="res://00_global/visual_effects/hit_particle_settings.gd" id="15_uucha"]
+[ext_resource type="Script" uid="uid://bjx867jy86jqx" path="res://general/script/loot_dropper.gd" id="16_qpicr"]
+[ext_resource type="Script" uid="uid://duijklckklu77" path="res://general/script/loot_data.gd" id="17_vpnvx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3lcx"]
 radius = 8.0
@@ -153,6 +155,12 @@ count = 24
 color = Color(0.006456087, 0.6228548, 0.95484024, 1)
 metadata/_custom_type_script = "uid://dpmqf183mx5sj"
 
+[sub_resource type="Resource" id="Resource_2mgqq"]
+script = ExtResource("17_vpnvx")
+item = "uid://40st5uhu6ds8"
+maximum = 6
+metadata/_custom_type_script = "uid://duijklckklu77"
+
 [node name="Slime2" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 3
@@ -249,3 +257,9 @@ script = ExtResource("14_dq0sk")
 hit_particles = Array[ExtResource("15_uucha")]([SubResource("Resource_qpicr")])
 death_particles = Array[ExtResource("15_uucha")]([SubResource("Resource_vpnvx"), SubResource("Resource_7lkcl")])
 metadata/_custom_type_script = "uid://dbh873mkpjec2"
+
+[node name="LootDropper" type="Marker2D" parent="."]
+position = Vector2(-1, -13)
+script = ExtResource("16_qpicr")
+items = Array[ExtResource("17_vpnvx")]([SubResource("Resource_2mgqq")])
+metadata/_custom_type_script = "uid://bjx867jy86jqx"
