@@ -1,55 +1,13 @@
-[gd_scene load_steps=23 format=4 uid="uid://bnfbe6fuxao67"]
+[gd_scene load_steps=9 format=4 uid="uid://bnfbe6fuxao67"]
 
 [ext_resource type="TileSet" uid="uid://du1gpbscf43nr" path="res://level/tilesets/forgotten_forest.tres" id="1_wd8om"]
 [ext_resource type="Script" uid="uid://crir7djhqs0l2" path="res://general/script/level_bound.gd" id="2_il8as"]
 [ext_resource type="PackedScene" uid="uid://di4qclgoewygn" path="res://general/player_spawn/player_spawn.tscn" id="3_ly1mx"]
 [ext_resource type="PackedScene" uid="uid://chgocaxqhxlgs" path="res://level/props/test_dummy/test_dummy.tscn" id="4_b6inf"]
 [ext_resource type="PackedScene" uid="uid://cfpl0xe2p3tfy" path="res://level/props/test_dummy/spike_dummy.tscn" id="4_frv4h"]
-[ext_resource type="PackedScene" uid="uid://cxfua5q2k6tet" path="res://level/props/crate_wooden.tscn" id="5_b6inf"]
 [ext_resource type="PackedScene" uid="uid://cl2e45pj0gfus" path="res://level/props/plant.tscn" id="7_t3ulj"]
-[ext_resource type="PackedScene" uid="uid://b43e6exxybydk" path="res://enemies/slime/slime.tscn" id="8_t3ulj"]
 [ext_resource type="Script" uid="uid://bqpwu3ktipoto" path="res://music/music_auto_trigger.gd" id="9_v13ek"]
-[ext_resource type="PackedScene" uid="uid://ddhn011gkfqw6" path="res://enemies/slime_2/slime_2.tscn" id="10_njcul"]
-[ext_resource type="Texture2D" uid="uid://bt12npuxx7s1t" path="res://enemies/slime/slime.png" id="11_cg3lk"]
-[ext_resource type="Script" uid="uid://dbh873mkpjec2" path="res://enemies/scripts/enemy_hit_particles.gd" id="12_eillp"]
-[ext_resource type="Script" uid="uid://dpmqf183mx5sj" path="res://00_global/visual_effects/hit_particle_settings.gd" id="13_4hya2"]
-[ext_resource type="Script" uid="uid://c8kuda8wrkqje" path="res://general/script/damage_area.gd" id="14_lswfi"]
-[ext_resource type="AudioStream" uid="uid://b8jhai4c6014k" path="res://enemies/slime/slime_hit.wav" id="15_api2s"]
-[ext_resource type="PackedScene" uid="uid://40st5uhu6ds8" path="res://general/health_pickup/health_pickup.tscn" id="16_eillp"]
-
-[sub_resource type="Gradient" id="Gradient_dq0sk"]
-offsets = PackedFloat32Array(0.4651163, 1)
-colors = PackedColorArray(0.98199487, 0.9688971, 0.9688971, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uucha"]
-gradient = SubResource("Gradient_dq0sk")
-width = 8
-height = 8
-fill = 1
-fill_from = Vector2(0.507772, 0.507772)
-fill_to = Vector2(0.5, 0)
-
-[sub_resource type="Resource" id="Resource_qpicr"]
-script = ExtResource("13_4hya2")
-count = 12
-color = Color(0.006456087, 0.6228548, 0.95484024, 1)
-texture = SubResource("GradientTexture2D_uucha")
-metadata/_custom_type_script = "uid://dpmqf183mx5sj"
-
-[sub_resource type="Resource" id="Resource_vpnvx"]
-script = ExtResource("13_4hya2")
-count = 8
-color = Color(0.9045336, 0.9417285, 0.9616289, 1)
-metadata/_custom_type_script = "uid://dpmqf183mx5sj"
-
-[sub_resource type="Resource" id="Resource_7lkcl"]
-script = ExtResource("13_4hya2")
-count = 24
-color = Color(0.006456087, 0.6228548, 0.95484024, 1)
-metadata/_custom_type_script = "uid://dpmqf183mx5sj"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jst0"]
-size = Vector2(26, 24)
+[ext_resource type="PackedScene" uid="uid://sllpvqhlg78f" path="res://enemies/living_armor/living_armor.tscn" id="15_cg3lk"]
 
 [node name="07" type="Node2D"]
 
@@ -64,7 +22,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAdAAcAAAAAAAEAAQAdAAgAAAAAAAIAAQAdAAk
 tile_set = ExtResource("1_wd8om")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAYAAQAMAAIAAAAAAAcAAQAMAAMAAAAAAAgAAQAMAAQAAAABAAYAAQANAAIAAAABAAcAAQANAAMAAAABAAgAAQANAAQAAAACAAYAAQAOAAIAAAACAAcAAQAOAAMAAAACAAgAAQAOAAQAAAADAAYAAQAPAAIAAAADAAcAAQAPAAMAAAADAAgAAQAPAAQAAAAEAAcAAQAFAAMAAAAEAAgAAQAFAAQAAAAFAAcAAQAGAAMAAAAFAAgAAQAGAAQAAAAGAAcAAQAGAAMAAAAGAAgAAQAGAAQAAAAHAAcAAQAGAAMAAAAHAAgAAQAGAAQAAAAIAAcAAQAGAAMAAAAIAAgAAQAGAAQAAAAJAAcAAQAGAAMAAAAJAAgAAQAGAAQAAAAKAAcAAQAGAAMAAAAKAAgAAQAGAAQAAAANAAYAAQAIAAIAAAANAAcAAQAIAAMAAAANAAgAAQAIAAQAAAAOAAYAAQAJAAIAAAAOAAcAAQAJAAMAAAAOAAgAAQAJAAQAAAAPAAYAAQAKAAIAAAAPAAcAAQAKAAMAAAAPAAgAAQAKAAQAAAAQAAYAAQALAAIAAAAQAAcAAQALAAMAAAAQAAgAAQALAAQAAAARAAYAAQAVAAAAAAARAAcAAQAGAAQAAAARAAgAAQALAAQAAAASAAYAAQAVAAAAAAASAAcAAQAGAAQAAAASAAgAAQALAAQAAAATAAYAAQAVAAAAAAATAAcAAQAGAAQAAAATAAgAAQALAAQAAAAUAAYAAQAVAAAAAAAUAAcAAQAGAAQAAAAUAAgAAQALAAQAAAAVAAYAAQAVAAAAAAAVAAcAAQAGAAQAAAAVAAgAAQAMAAQAAAALAAcAAQAGAAMAAAALAAgAAQAGAAQAAAAMAAcAAQAGAAMAAAAMAAgAAQAGAAQAAAAWAAYAAQAVAAAAAAAWAAcAAQAGAAQAAAAWAAgAAQALAAQAAAA=")
+tile_map_data = PackedByteArray("AAAAAAYAAQAMAAIAAAAAAAcAAQAMAAMAAAAAAAgAAQAMAAQAAAABAAYAAQANAAIAAAABAAcAAQANAAMAAAABAAgAAQANAAQAAAACAAYAAQAOAAIAAAACAAcAAQAOAAMAAAACAAgAAQAOAAQAAAADAAYAAQAPAAIAAAADAAcAAQAPAAMAAAADAAgAAQAPAAQAAAAEAAcAAQAFAAMAAAAEAAgAAQAFAAQAAAAFAAcAAQAGAAMAAAAFAAgAAQAGAAQAAAAGAAcAAQAGAAMAAAAGAAgAAQAGAAQAAAAHAAcAAQAGAAMAAAAHAAgAAQAGAAQAAAAIAAcAAQAGAAMAAAAIAAgAAQAGAAQAAAAJAAcAAQAGAAMAAAAJAAgAAQAGAAQAAAAKAAcAAQAGAAMAAAAKAAgAAQAGAAQAAAANAAYAAQAIAAIAAAANAAcAAQAIAAMAAAANAAgAAQAIAAQAAAAOAAYAAQAJAAIAAAAOAAcAAQAJAAMAAAAOAAgAAQAJAAQAAAAPAAYAAQAKAAIAAAAPAAcAAQAKAAMAAAAPAAgAAQAKAAQAAAAQAAYAAQALAAIAAAAQAAcAAQALAAMAAAAQAAgAAQALAAQAAAARAAcAAQAGAAQAAAARAAgAAQALAAQAAAASAAYAAQAVAAAAAAASAAcAAQAGAAQAAAASAAgAAQALAAQAAAATAAYAAQAVAAAAAAATAAcAAQAGAAQAAAATAAgAAQALAAQAAAAUAAYAAQAVAAAAAAAUAAcAAQAGAAQAAAAUAAgAAQALAAQAAAAVAAYAAQAVAAAAAAAVAAcAAQAGAAQAAAAVAAgAAQAMAAQAAAALAAcAAQAGAAMAAAALAAgAAQAGAAQAAAAMAAcAAQAGAAMAAAAMAAgAAQAGAAQAAAAWAAYAAQAVAAAAAAAWAAcAAQAGAAQAAAAWAAgAAQALAAQAAAAXAAYAAQAAAAMAAAAXAAcAAQAAAAQAAAAXAAgAAQAAAAQAAAAXAAQAAQAAAAEAAAAXAAUAAQAAAAIAAAAXAAIAAQAAAAEAAAAXAAMAAQAAAAIAAAAXAAAAAQAAAAEAAAAXAAEAAQAAAAIAAAARAAYAAQAVAAAAAAA=")
 tile_set = ExtResource("1_wd8om")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
@@ -80,11 +38,11 @@ tile_set = ExtResource("1_wd8om")
 [node name="LevelBounds" type="Node2D" parent="."]
 z_index = 256
 script = ExtResource("2_il8as")
-width = 736
+width = 768
 metadata/_custom_type_script = "uid://crir7djhqs0l2"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_ly1mx")]
-position = Vector2(315, 196)
+position = Vector2(312, 68)
 
 [node name="SpikeDummy2" parent="." instance=ExtResource("4_b6inf")]
 position = Vector2(343, 97)
@@ -92,52 +50,15 @@ position = Vector2(343, 97)
 [node name="SpikeDummy" parent="." instance=ExtResource("4_frv4h")]
 position = Vector2(116, 97)
 
-[node name="Crate" parent="." instance=ExtResource("5_b6inf")]
-position = Vector2(391, 212)
-
-[node name="Crate2" parent="." instance=ExtResource("5_b6inf")]
-position = Vector2(154, 213)
-
 [node name="Plant" parent="." instance=ExtResource("7_t3ulj")]
 z_index = -4
 position = Vector2(462, 212)
 rotation = -0.25520855
 
-[node name="Slime" parent="." instance=ExtResource("8_t3ulj")]
-position = Vector2(167, 98)
-
 [node name="MusicAutoTrigger" type="Node" parent="."]
 script = ExtResource("9_v13ek")
 metadata/_custom_type_script = "uid://bqpwu3ktipoto"
 
-[node name="Slime2" parent="." instance=ExtResource("10_njcul")]
-position = Vector2(264, 162)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.31018072, 0.9480516, 0.093698464, 1)
-position = Vector2(276, 209)
-texture = ExtResource("11_cg3lk")
-hframes = 6
-vframes = 3
-
-[node name="EnemyHitPatrticles" type="Marker2D" parent="Sprite2D"]
-position = Vector2(1, -16)
-script = ExtResource("12_eillp")
-hit_particles = Array[ExtResource("13_4hya2")]([SubResource("Resource_qpicr")])
-death_particles = Array[ExtResource("13_4hya2")]([SubResource("Resource_vpnvx"), SubResource("Resource_7lkcl")])
-metadata/_custom_type_script = "uid://dbh873mkpjec2"
-
-[node name="DamageArea" type="Area2D" parent="Sprite2D"]
-position = Vector2(0, 16)
-collision_layer = 32
-collision_mask = 0
-script = ExtResource("14_lswfi")
-audio = ExtResource("15_api2s")
-metadata/_custom_type_script = "uid://c8kuda8wrkqje"
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/DamageArea"]
-position = Vector2(0, -12)
-shape = SubResource("RectangleShape2D_3jst0")
-
-[node name="HealthPickup" parent="." instance=ExtResource("16_eillp")]
-position = Vector2(485, 175)
+[node name="LivingArmor" parent="." instance=ExtResource("15_cg3lk")]
+position = Vector2(186, 228)
+face_left_on_start = false
