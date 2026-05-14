@@ -1,3 +1,4 @@
+PatrolLimit
 ESChase
 CollisionShape2D
 AttackArea
@@ -11,5 +12,3 @@ CharacterBody2D
 EnemyHitPatrticles
 Label
 CollisionPolygon2D
-PlayerSensor
-EdgeSensor

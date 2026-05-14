@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bnfbe6fuxao67"]
+[gd_scene load_steps=10 format=4 uid="uid://bnfbe6fuxao67"]
 
 [ext_resource type="TileSet" uid="uid://du1gpbscf43nr" path="res://level/tilesets/forgotten_forest.tres" id="1_wd8om"]
 [ext_resource type="Script" uid="uid://crir7djhqs0l2" path="res://general/script/level_bound.gd" id="2_il8as"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://chgocaxqhxlgs" path="res://level/props/test_dummy/test_dummy.tscn" id="4_b6inf"]
 [ext_resource type="PackedScene" uid="uid://cfpl0xe2p3tfy" path="res://level/props/test_dummy/spike_dummy.tscn" id="4_frv4h"]
 [ext_resource type="PackedScene" uid="uid://cl2e45pj0gfus" path="res://level/props/plant.tscn" id="7_t3ulj"]
+[ext_resource type="Script" uid="uid://dpe0wppd6f0v4" path="res://general/script/patrol_limit.gd" id="9_njcul"]
 [ext_resource type="Script" uid="uid://bqpwu3ktipoto" path="res://music/music_auto_trigger.gd" id="9_v13ek"]
 [ext_resource type="PackedScene" uid="uid://sllpvqhlg78f" path="res://enemies/living_armor/living_armor.tscn" id="15_cg3lk"]
 
@@ -60,5 +61,16 @@ script = ExtResource("9_v13ek")
 metadata/_custom_type_script = "uid://bqpwu3ktipoto"
 
 [node name="LivingArmor" parent="." instance=ExtResource("15_cg3lk")]
-position = Vector2(186, 228)
+position = Vector2(247, 228)
 face_left_on_start = false
+
+[node name="PatrolLimit" type="Node2D" parent="LivingArmor"]
+position = Vector2(-70, -3)
+script = ExtResource("9_njcul")
+metadata/_custom_type_script = "uid://dpe0wppd6f0v4"
+
+[node name="PatrolLimit2" type="Node2D" parent="LivingArmor"]
+position = Vector2(75, -3)
+script = ExtResource("9_njcul")
+side = 2
+metadata/_custom_type_script = "uid://dpe0wppd6f0v4"
