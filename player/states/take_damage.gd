@@ -5,7 +5,8 @@ class_name PlayerTakeDamageState extends PlayerState
 var time : float = 0.0
 var dir : float = 1.0
 @onready var damage_area: DamageArea = %DamageArea
-@onready var hurt_audio: AudioStreamPlayer2D = %HurtAudio
+const AARGH = preload("uid://201uj8vd81hi")
+
 
 
 func init() -> void:
@@ -18,7 +19,7 @@ func enter() -> void:
 	player.animation_player.play("take_damage")
 	time = player.animation_player.current_animation_length
 	damage_area.make_invulnerable(invulnerable_duration)
-	hurt_audio.play()
+	Audio.play_spatial_sound(AARGH,player.global_position,false,true,0.45)
 	VisualEffects.camera_shake(2.0)
 	pass
 

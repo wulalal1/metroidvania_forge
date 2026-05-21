@@ -8,7 +8,10 @@ signal  was_killed()
 
 @export var health : float = 3
 @export var affected_by_gravity : bool = true
-@export var face_left_on_start : bool = false
+@export var face_left_on_start : bool = false :
+	set( value):
+		face_left_on_start = value
+		_update_face_left()
 
 #@export_category("Audio")
 #@export var death_sound : AudioStream
@@ -107,3 +110,11 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if not find_children("*","DecisionEngine",false):
 		warnings.append("Requires a DecisionEngine node")
 	return warnings
+
+func _update_face_left() -> void:
+	if not Engine.is_editor_hint():
+		return
+	for c in get_children():
+		if c is Sprite2D:
+			c.flip_h = face_left_on_start
+	pass

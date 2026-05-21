@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cty21f0k4culd"]
+[gd_scene load_steps=41 format=3 uid="uid://cty21f0k4culd"]
 
 [ext_resource type="Script" uid="uid://cllkni11dk04n" path="res://player/scripts/player.gd" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://b0r8ecegc0nsf" path="res://player/sprites/hero.png" id="2_boad6"]
@@ -20,9 +20,6 @@
 [ext_resource type="Script" uid="uid://dswuc8xcd6t7n" path="res://player/states/ball.gd" id="12_s7qer"]
 [ext_resource type="Script" uid="uid://duvkjllusbto2" path="res://player/scripts/player_sprite.gd" id="12_x7c3f"]
 [ext_resource type="Script" uid="uid://c8kuda8wrkqje" path="res://general/script/damage_area.gd" id="14_kb6p2"]
-[ext_resource type="AudioStream" uid="uid://201uj8vd81hi" path="res://general/audio/aargh.wav" id="16_32hag"]
-[ext_resource type="AudioStream" uid="uid://hohrn2p6b08c" path="res://general/audio/jump.wav" id="18_c35mf"]
-[ext_resource type="AudioStream" uid="uid://cjf7c66o3v3rh" path="res://general/audio/land.wav" id="19_65viv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_boad6"]
 radius = 8.0
@@ -561,21 +558,6 @@ debug_color = Color(0.006318384, 0.45812538, 0.93447423, 1)
 
 [node name="AudioStreams" type="Node2D" parent="."]
 position = Vector2(0, -29)
-
-[node name="HurtAudio" type="AudioStreamPlayer2D" parent="AudioStreams"]
-unique_name_in_owner = true
-stream = ExtResource("16_32hag")
-bus = &"SFX"
-
-[node name="JumpAudio" type="AudioStreamPlayer2D" parent="AudioStreams"]
-unique_name_in_owner = true
-stream = ExtResource("18_c35mf")
-bus = &"SFX"
-
-[node name="LandAudio" type="AudioStreamPlayer2D" parent="AudioStreams"]
-unique_name_in_owner = true
-stream = ExtResource("19_65viv")
-bus = &"SFX"
 
 [node name="BallRays" type="Node2D" parent="."]
 

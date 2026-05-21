@@ -1,6 +1,7 @@
 class_name PlayerStateFall extends PlayerState
+const LAND = preload("uid://cjf7c66o3v3rh")
 
-@onready var land_audio: AudioStreamPlayer2D = %LandAudio
+
 @export var fall_gravity_mulitplier : float = 1.165
 @export var coyote_time : float = 0.125
 @export var jump_buffer_time : float = 0.2
@@ -65,7 +66,7 @@ func process(_delta: float) -> PlayerState:
 func physics_process(_delta: float) -> PlayerState:
 	if player.is_on_floor():
 		VisualEffects.land_dust(player.global_position)
-		land_audio.play()
+		Audio.play_spatial_sound(LAND,player.global_position,false,true,0.5)
 		#player.add_debug_indicator()
 		#if buffer_timer > 0 and Input.is_action_pressed("jump"):
 		if buffer_timer > 0:

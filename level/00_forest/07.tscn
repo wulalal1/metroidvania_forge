@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bnfbe6fuxao67"]
+[gd_scene load_steps=11 format=4 uid="uid://bnfbe6fuxao67"]
 
 [ext_resource type="TileSet" uid="uid://du1gpbscf43nr" path="res://level/tilesets/forgotten_forest.tres" id="1_wd8om"]
 [ext_resource type="Script" uid="uid://crir7djhqs0l2" path="res://general/script/level_bound.gd" id="2_il8as"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cl2e45pj0gfus" path="res://level/props/plant.tscn" id="7_t3ulj"]
 [ext_resource type="Script" uid="uid://dpe0wppd6f0v4" path="res://general/script/patrol_limit.gd" id="9_njcul"]
 [ext_resource type="Script" uid="uid://bqpwu3ktipoto" path="res://music/music_auto_trigger.gd" id="9_v13ek"]
+[ext_resource type="PackedScene" uid="uid://ddhn011gkfqw6" path="res://enemies/slime_2/slime_2.tscn" id="10_njcul"]
 [ext_resource type="PackedScene" uid="uid://sllpvqhlg78f" path="res://enemies/living_armor/living_armor.tscn" id="15_cg3lk"]
 
 [node name="07" type="Node2D"]
@@ -74,3 +75,6 @@ position = Vector2(75, -3)
 script = ExtResource("9_njcul")
 side = 2
 metadata/_custom_type_script = "uid://dpe0wppd6f0v4"
+
+[node name="Slime2" parent="." instance=ExtResource("10_njcul")]
+position = Vector2(267, 159)

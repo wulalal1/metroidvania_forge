@@ -35,7 +35,7 @@ var dash : bool = false
 var dash_count : int = 0
 var double_jump : bool = false
 var jump_count : int = 0
-var ground_slam : bool =false
+var ground_slam : bool = true#false #true是开启功能
 var morph_roll : bool = false
 var can_intercat : bool = false
 
