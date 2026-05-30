@@ -1,4 +1,4 @@
-class_name ESAttack
+class_name ESFlyAttack
 extends EnemyState
 #meta-name: EnemyState
 #meta-description: Boilerplate template for enemy state script
@@ -10,14 +10,17 @@ extends EnemyState
 # var enemy : Enemy
 # var blackboard : Blackboard
 @export var attack_range : float = 100
-@export var move_speed: float = 200
 @export var cooldown : float = 3.0
 @export var attack_area : AttackArea
-@export var move_speed_curve : Curve
+@export var speed : float = 200
+@export var speed_curve : Curve
 
+var dir : Vector2
 var timer : float = 0
 var duration : float = 0
 var on_cooldown : bool = false
+var speed_sample : float = 1.0
+
 
 func enter() -> void:
 	enemy.play_animation(animation_name if animation_name else "attack")
@@ -25,7 +28,6 @@ func enter() -> void:
 	timer = 0
 	blackboard.can_decide = false
 	on_cooldown = true
-	enemy.velocity.x = move_speed * blackboard.dir
 	if attack_area:
 		attack_area.flip(blackboard.dir)
 	pass
@@ -42,10 +44,15 @@ func physics_update(_delta : float) -> void:
 	timer += _delta
 	if timer >= duration:
 		blackboard.can_decide = true
-	if move_speed_curve:
-		var sample : float = move_speed_curve.sample(timer / duration)
-		enemy.velocity.x = move_speed * sample * blackboard.dir
+	if not is_instance_valid(blackboard.target):
+		return
+	if speed_curve:
+		speed_sample = speed_curve.sample(timer / duration)
+		dir = enemy.global_position.direction_to(blackboard.target.global_position)
+	enemy.change_dir(sign(dir.x))
+	enemy.velocity = dir * speed * speed_sample
 	pass
+
 func can_attack() -> bool:
 	if blackboard.distance_to_target <= attack_range and not on_cooldown:
 		return true
@@ -54,7 +61,4 @@ func can_attack() -> bool:
 func run_cooldown() -> void:
 	await  get_tree().create_timer(cooldown).timeout
 	on_cooldown = false
-		
 	pass
-
-	

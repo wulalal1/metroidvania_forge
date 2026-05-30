@@ -1,4 +1,4 @@
-class_name ESChase
+class_name ESFlyChase
 extends EnemyState
 #meta-name: EnemyState
 #meta-description: Boilerplate template for enemy state script
@@ -9,11 +9,11 @@ extends EnemyState
 # var state_machine: EnemyStateMachine
 # var enemy : Enemy
 # var blackboard : Blackboard
-@export var chase_speed : float = 100
-
+@export var speed : float = 100
 
 func enter() -> void:
-	enemy.play_animation(animation_name if animation_name else "chase")
+	var anim : String = animation_name if animation_name else "chase"
+	enemy.play_animation(anim)
 	pass
 
 func re_enter() -> void:
@@ -25,7 +25,7 @@ func exit() -> void:
 func physics_update(_delta : float) -> void:
 	if not is_instance_valid(blackboard.target):
 		return
-	var dir : float = sign(blackboard.target.global_position.x - enemy.global_position.x)
-	enemy.change_dir(dir)
-	enemy.velocity.x = dir * chase_speed
+	var dir : Vector2 = enemy.global_position.direction_to(blackboard.target.global_position)
+	enemy.change_dir(sign(dir.x))
+	enemy.velocity = speed * dir
 	pass

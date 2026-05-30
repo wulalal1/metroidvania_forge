@@ -118,7 +118,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	text = \"\"
 	text = \"target =\" 
-	text += slime_2.blackboard.target.name if  slime_2.blackboard.target else \"\"
+	text += slime_2.blackboard.target.name if slime_2.blackboard.target else \"\"
 	text += \"\\n  dist = \"
 	text += str(slime_2.blackboard.distance_to_target)
 	pass

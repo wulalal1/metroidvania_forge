@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://sllpvqhlg78f"]
+[gd_scene load_steps=40 format=3 uid="uid://sllpvqhlg78f"]
 
 [ext_resource type="Script" uid="uid://1hh5cxnr8587" path="res://enemies/scripts/enemy.gd" id="1_v8jak"]
 [ext_resource type="Texture2D" uid="uid://bqrcy4jbap7vi" path="res://enemies/living_armor/living_armor.png" id="2_np20x"]
@@ -157,6 +157,10 @@ _data = {
 &"walk": SubResource("Animation_qh6hf")
 }
 
+[sub_resource type="Curve" id="Curve_bxcqb"]
+_data = [Vector2(0.49793243, 0), 0.0, 0.0, 0, 0, Vector2(0.49794245, 1), 0.0, 0.0, 0, 0, Vector2(0.8641976, 0), -7.053367, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="Gradient" id="Gradient_dq0sk"]
 offsets = PackedFloat32Array(0.4651163, 1)
 colors = PackedColorArray(0.98199487, 0.9688971, 0.9688971, 1, 1, 1, 1, 0)
@@ -276,8 +280,9 @@ metadata/_custom_type_script = "uid://cllgilgtgy5nf"
 [node name="ESAttack" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("attack_area")]
 unique_name_in_owner = true
 script = ExtResource("11_rai4y")
-move_speed = 0.0
+move_speed = 100.0
 attack_area = NodePath("../../AttackArea")
+move_speed_curve = SubResource("Curve_bxcqb")
 metadata/_custom_type_script = "uid://dq21cmqjjbcj"
 
 [node name="ESChase" type="Node" parent="EnemyStateMachine"]
@@ -296,6 +301,7 @@ metadata/_custom_type_script = "uid://xc54qd3q8yn6"
 
 [node name="PlayerSensor" type="Area2D" parent="."]
 script = ExtResource("13_4cgso")
+use_audio_sensor = false
 metadata/_custom_type_script = "uid://bioe54vnv8g64"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerSensor"]

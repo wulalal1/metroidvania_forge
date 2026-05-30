@@ -1,0 +1,276 @@
+[gd_scene load_steps=35 format=3 uid="uid://ckwpiacgsros"]
+
+[ext_resource type="Script" uid="uid://1hh5cxnr8587" path="res://enemies/scripts/enemy.gd" id="1_dj70v"]
+[ext_resource type="Texture2D" uid="uid://ce8sf73nqvk1m" path="res://enemies/doom_scribe/DoomScribe-SpriteSheet.png" id="2_hh7qf"]
+[ext_resource type="Script" uid="uid://c8kuda8wrkqje" path="res://general/script/damage_area.gd" id="3_o7ehu"]
+[ext_resource type="AudioStream" uid="uid://c0av5dof81pwf" path="res://general/audio/hit.wav" id="4_cub4v"]
+[ext_resource type="Script" uid="uid://d01wd8k57m1w5" path="res://general/script/hazard_area.gd" id="5_p2ryh"]
+[ext_resource type="Script" uid="uid://dhiu8pjpst3o5" path="res://enemies/scripts/enemy_state_machine.gd" id="6_s1pe1"]
+[ext_resource type="Script" uid="uid://dvc8kftmrk1f2" path="res://enemies/scripts/states/es_stun.gd" id="8_p6x4p"]
+[ext_resource type="Script" uid="uid://cllgilgtgy5nf" path="res://enemies/scripts/states/es_death.gd" id="9_irvu3"]
+[ext_resource type="AudioStream" uid="uid://bo3el5aj7k5th" path="res://enemies/slime/slime_death.wav" id="10_gg21d"]
+[ext_resource type="Script" uid="uid://c07nsjk6u583s" path="res://enemies/scripts/states/es_walk.gd" id="10_ygs6q"]
+[ext_resource type="Script" uid="uid://c6y3012oblyva" path="res://enemies/scripts/states/es_attack_spell.gd" id="11_rby3k"]
+[ext_resource type="Script" uid="uid://bioe54vnv8g64" path="res://enemies/scripts/sensors/player_sensor.gd" id="13_5kaf2"]
+[ext_resource type="Script" uid="uid://dbh873mkpjec2" path="res://enemies/scripts/enemy_hit_particles.gd" id="14_o345h"]
+[ext_resource type="Script" uid="uid://dpmqf183mx5sj" path="res://00_global/visual_effects/hit_particle_settings.gd" id="15_lhtsy"]
+[ext_resource type="Script" uid="uid://klkx8m1a78m1" path="res://enemies/scripts/decision_engines/decision_engine_basic_attack.gd" id="16_rby3k"]
+[ext_resource type="Script" uid="uid://bjx867jy86jqx" path="res://general/script/loot_dropper.gd" id="16_y6vyx"]
+[ext_resource type="Script" uid="uid://duijklckklu77" path="res://general/script/loot_data.gd" id="17_udews"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ujdlt"]
+radius = 8.0
+height = 52.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu28u"]
+size = Vector2(34, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5napv"]
+size = Vector2(16, 51)
+
+[sub_resource type="Animation" id="Animation_3jlja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bxcqb"]
+resource_name = "attack"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_dq0sk"]
+resource_name = "death"
+length = 2.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+}
+
+[sub_resource type="Animation" id="Animation_d83ut"]
+resource_name = "stun"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
+
+[sub_resource type="Animation" id="Animation_3s51u"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uucha"]
+_data = {
+&"RESET": SubResource("Animation_3jlja"),
+&"attack": SubResource("Animation_bxcqb"),
+&"death": SubResource("Animation_dq0sk"),
+&"idle": SubResource("Animation_3s51u"),
+&"stun": SubResource("Animation_d83ut")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hh7qf"]
+radius = 136.00368
+
+[sub_resource type="Gradient" id="Gradient_dq0sk"]
+offsets = PackedFloat32Array(0.4651163, 1)
+colors = PackedColorArray(0.98199487, 0.9688971, 0.9688971, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uucha"]
+gradient = SubResource("Gradient_dq0sk")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.507772, 0.507772)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Resource" id="Resource_qpicr"]
+script = ExtResource("15_lhtsy")
+count = 12
+color = Color(0.48320764, 0.48320764, 0.853542, 1)
+texture = SubResource("GradientTexture2D_uucha")
+metadata/_custom_type_script = "uid://dpmqf183mx5sj"
+
+[sub_resource type="Resource" id="Resource_vpnvx"]
+script = ExtResource("15_lhtsy")
+count = 16
+color = Color(0.48320764, 0.48320764, 0.853542, 1)
+metadata/_custom_type_script = "uid://dpmqf183mx5sj"
+
+[sub_resource type="Resource" id="Resource_7lkcl"]
+script = ExtResource("15_lhtsy")
+count = 24
+color = Color(0.34901962, 0.3372549, 0.32156864, 1)
+metadata/_custom_type_script = "uid://dpmqf183mx5sj"
+
+[sub_resource type="Resource" id="Resource_gjt4y"]
+script = ExtResource("15_lhtsy")
+count = 8
+color = Color(0.5019608, 0.15294118, 0.15294118, 1)
+metadata/_custom_type_script = "uid://dpmqf183mx5sj"
+
+[sub_resource type="Resource" id="Resource_2mgqq"]
+script = ExtResource("17_udews")
+item = "uid://40st5uhu6ds8"
+maximum = 6
+metadata/_custom_type_script = "uid://duijklckklu77"
+
+[node name="DoomScribe" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_dj70v")
+health = 2.0
+affected_by_gravity = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -32)
+texture = ExtResource("2_hh7qf")
+hframes = 6
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -26)
+shape = SubResource("CapsuleShape2D_ujdlt")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_o7ehu")
+audio = ExtResource("4_cub4v")
+metadata/_custom_type_script = "uid://c8kuda8wrkqje"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_nu28u")
+debug_color = Color(0, 0.6, 0.69803923, 0.007843138)
+
+[node name="HazardArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("5_p2ryh")
+metadata/_custom_type_script = "uid://d01wd8k57m1w5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+position = Vector2(0, -25.5)
+shape = SubResource("RectangleShape2D_5napv")
+debug_color = Color(0.6901961, 0.007843138, 0.07450981, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uucha")
+}
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("6_s1pe1")
+metadata/_custom_type_script = "uid://dhiu8pjpst3o5"
+
+[node name="ESWalk" type="Node" parent="EnemyStateMachine"]
+unique_name_in_owner = true
+script = ExtResource("10_ygs6q")
+walk_speed = 0.0
+animation_name = "idle"
+metadata/_custom_type_script = "uid://c07nsjk6u583s"
+
+[node name="ESStun" type="Node" parent="EnemyStateMachine"]
+unique_name_in_owner = true
+script = ExtResource("8_p6x4p")
+knockback_strength = 0.0
+metadata/_custom_type_script = "uid://dvc8kftmrk1f2"
+
+[node name="ESDeath" type="Node" parent="EnemyStateMachine"]
+unique_name_in_owner = true
+script = ExtResource("9_irvu3")
+knockback_strength = 0.0
+death_audio = ExtResource("10_gg21d")
+metadata/_custom_type_script = "uid://cllgilgtgy5nf"
+
+[node name="ESAttackSpell" type="Node" parent="EnemyStateMachine"]
+unique_name_in_owner = true
+script = ExtResource("11_rby3k")
+spell_scene = "uid://d047dy8bqwb1l"
+attack_range = 300.0
+move_speed = 0.0
+metadata/_custom_type_script = "uid://c6y3012oblyva"
+
+[node name="PlayerSensor" type="Area2D" parent="."]
+script = ExtResource("13_5kaf2")
+use_audio_sensor = false
+metadata/_custom_type_script = "uid://bioe54vnv8g64"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSensor"]
+position = Vector2(-3, -25)
+shape = SubResource("CircleShape2D_hh7qf")
+debug_color = Color(0.99607843, 0.5372549, 0.019607844, 0)
+
+[node name="EnemyHitPatrticles" type="Marker2D" parent="."]
+position = Vector2(0, -7)
+script = ExtResource("14_o345h")
+hit_particles = Array[ExtResource("15_lhtsy")]([SubResource("Resource_qpicr")])
+death_particles = Array[ExtResource("15_lhtsy")]([SubResource("Resource_vpnvx"), SubResource("Resource_7lkcl"), SubResource("Resource_gjt4y")])
+metadata/_custom_type_script = "uid://dbh873mkpjec2"
+
+[node name="LootDropper" type="Marker2D" parent="."]
+position = Vector2(0, -13)
+script = ExtResource("16_y6vyx")
+items = Array[ExtResource("17_udews")]([SubResource("Resource_2mgqq")])
+metadata/_custom_type_script = "uid://bjx867jy86jqx"
+
+[node name="DecisionEngineBasicAAttack" type="Node" parent="." node_paths=PackedStringArray("attack_state", "chase_state")]
+script = ExtResource("16_rby3k")
+attack_state = NodePath("../EnemyStateMachine/ESAttackSpell")
+chase_state = NodePath("../EnemyStateMachine/ESWalk")
+metadata/_custom_type_script = "uid://klkx8m1a78m1"
