@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://356vxjxwvuu8"]
+
+[ext_resource type="Environment" uid="uid://4ul530j61o80" path="res://default_environment.tres" id="1_2bjrl"]
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = ExtResource("1_2bjrl")

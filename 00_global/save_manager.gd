@@ -42,6 +42,7 @@ func create_new_game_save( slot : int ) -> void:
 		"y" : 165,
 		"hp" : 20,
 		"max_hp" : 20,
+		"gold" : 0,
 		"dash" : false,
 		"double_jump" : false,
 		"ground_slam" : false,
@@ -66,6 +67,7 @@ func save_game() -> void:
 		"y" : player.global_position.y,
 		"hp" : player.hp,
 		"max_hp" : player.max_hp,
+		"gold" : player.gold,
 		"dash" : player.dash,
 		"double_jump" : player.double_jump,
 		"ground_slam" : player.ground_slam,
@@ -98,6 +100,7 @@ func setup_player() -> void:
 		await get_tree().process_frame
 	player.max_hp = save_data.get("max_hp",20)
 	player.hp = save_data.get("hp",20)
+	player.gold = save_data.get("gold",0)
 	player.dash = save_data.get("dash",false)
 	player.double_jump = save_data.get("double_jump",false)
 	player.ground_slam = save_data.get("ground_slam",false)

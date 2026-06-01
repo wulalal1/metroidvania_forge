@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var game_over: Control = %GameOver
 @onready var load_button: Button = %LoadButton
 @onready var quit_button: Button = %QuitButton
+@onready var gold_count_label: Label = %GoldCountLabel
 
 
 func _ready() -> void:
@@ -13,6 +14,7 @@ func _ready() -> void:
 	game_over.visible = false
 	load_button.pressed.connect(_on_load_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
+	Messages.gold_changed.connect(_on_gold_changed)
 	pass
 
 
@@ -53,4 +55,7 @@ func _on_load_pressed() -> void:
 func _on_quit_pressed() -> void:
 	SceneManager.transition_scene("res://title_screen/title_screen.tscn","",Vector2.ZERO,"up")
 	clear_game_over()
+	pass
+func _on_gold_changed(amount: int) -> void:
+	gold_count_label.text = str(amount)
 	pass

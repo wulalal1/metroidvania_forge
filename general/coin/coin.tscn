@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://odq58kordnda"]
+
+[ext_resource type="Script" uid="uid://b6688kbyjsmlv" path="res://general/coin/coin.gd" id="1_tq31k"]
+[ext_resource type="Texture2D" uid="uid://u4jp7hdwqbso" path="res://general/coin/coin.png" id="2_5w5pr"]
+[ext_resource type="AudioStream" uid="uid://dg0w42c5mcx4i" path="res://general/coin/coin.wav" id="2_ka0w8"]
+
+[sub_resource type="Animation" id="Animation_ka0w8"]
+resource_name = "default"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_xqt4x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8coxn"]
+_data = {
+&"RESET": SubResource("Animation_xqt4x"),
+&"default": SubResource("Animation_ka0w8")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5ak8"]
+size = Vector2(8.75, 10.25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tq31k"]
+radius = 4.1231055
+
+[node name="Coin" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_tq31k")
+pickup_audio = ExtResource("2_ka0w8")
+bounciness = 0.8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5w5pr")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8coxn")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_g5ak8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tq31k")

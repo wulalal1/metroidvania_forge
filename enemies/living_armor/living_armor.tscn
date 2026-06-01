@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://sllpvqhlg78f"]
+[gd_scene load_steps=42 format=3 uid="uid://sllpvqhlg78f"]
 
 [ext_resource type="Script" uid="uid://1hh5cxnr8587" path="res://enemies/scripts/enemy.gd" id="1_v8jak"]
 [ext_resource type="Texture2D" uid="uid://bqrcy4jbap7vi" path="res://enemies/living_armor/living_armor.png" id="2_np20x"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://duijklckklu77" path="res://general/script/loot_data.gd" id="17_1yt5q"]
 [ext_resource type="Script" uid="uid://klkx8m1a78m1" path="res://enemies/scripts/decision_engines/decision_engine_basic_attack.gd" id="17_np20x"]
 [ext_resource type="Script" uid="uid://cpvdxarsaw6fa" path="res://general/script/attack_area.gd" id="19_qh6hf"]
+[ext_resource type="Script" uid="uid://dmlqeibxj1h4g" path="res://general/script/damage_modulate.gd" id="21_gjt4y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e3lcx"]
 radius = 8.0
@@ -202,6 +203,15 @@ metadata/_custom_type_script = "uid://dpmqf183mx5sj"
 script = ExtResource("17_1yt5q")
 item = "uid://40st5uhu6ds8"
 maximum = 6
+drop_chance = 1.0
+metadata/_custom_type_script = "uid://duijklckklu77"
+
+[sub_resource type="Resource" id="Resource_dh8sx"]
+script = ExtResource("17_1yt5q")
+item = "uid://odq58kordnda"
+minimum = 5
+maximum = 10
+drop_chance = 1.0
 metadata/_custom_type_script = "uid://duijklckklu77"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bxcqb"]
@@ -319,7 +329,7 @@ metadata/_custom_type_script = "uid://dbh873mkpjec2"
 [node name="LootDropper" type="Marker2D" parent="."]
 position = Vector2(-1, -13)
 script = ExtResource("16_wc7mr")
-items = Array[ExtResource("17_1yt5q")]([SubResource("Resource_2mgqq")])
+items = Array[ExtResource("17_1yt5q")]([SubResource("Resource_2mgqq"), SubResource("Resource_dh8sx")])
 metadata/_custom_type_script = "uid://bjx867jy86jqx"
 
 [node name="DecisionEngineBasicAAttack" type="Node" parent="." node_paths=PackedStringArray("attack_state", "chase_state")]
@@ -339,3 +349,7 @@ metadata/_custom_type_script = "uid://cpvdxarsaw6fa"
 position = Vector2(-2.75, -5.25)
 shape = SubResource("RectangleShape2D_bxcqb")
 debug_color = Color(0.96862745, 0.039215688, 0.12156863, 0.21176471)
+
+[node name="DamageModulate" type="Node" parent="."]
+script = ExtResource("21_gjt4y")
+metadata/_custom_type_script = "uid://dmlqeibxj1h4g"

@@ -1,10 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://40st5uhu6ds8"]
+[gd_scene load_steps=8 format=3 uid="uid://40st5uhu6ds8"]
 
 [ext_resource type="Script" uid="uid://d0blyd0lxvvi7" path="res://general/health_pickup/health_pickup.gd" id="1_4tdop"]
 [ext_resource type="Texture2D" uid="uid://bm7dauf5doedy" path="res://general/health_pickup/heart.png" id="1_oswdi"]
+[ext_resource type="AudioStream" uid="uid://bnjohlqjp07xb" path="res://general/audio/health_up.wav" id="2_4bav5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4tdop"]
 radius = 8.0
+
+[sub_resource type="Animation" id="Animation_66wk7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_4bav5"]
 resource_name = "default"
@@ -23,21 +39,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
-[sub_resource type="Animation" id="Animation_66wk7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ndoxy"]
 _data = {
 &"RESET": SubResource("Animation_66wk7"),
@@ -48,6 +49,10 @@ _data = {
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_4tdop")
+heal_amount = null
+pickup_audio = ExtResource("2_4bav5")
+bonce_count = null
+bounciness = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4tdop")

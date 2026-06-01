@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://jdepfiuryrkh"]
+[gd_scene load_steps=41 format=3 uid="uid://jdepfiuryrkh"]
 
 [ext_resource type="Script" uid="uid://1hh5cxnr8587" path="res://enemies/scripts/enemy.gd" id="1_ter7b"]
 [ext_resource type="Texture2D" uid="uid://cvyw3hw4jif6e" path="res://enemies/demonic_chest/dchestspritesheet.png" id="2_obha7"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://bjx867jy86jqx" path="res://general/script/loot_dropper.gd" id="17_msfr6"]
 [ext_resource type="Script" uid="uid://duijklckklu77" path="res://general/script/loot_data.gd" id="18_4p7m3"]
 [ext_resource type="Script" uid="uid://n2qibllsy8yu" path="res://enemies/scripts/decision_engines/decision_engine_flying.gd" id="19_3s51u"]
+[ext_resource type="Script" uid="uid://dmlqeibxj1h4g" path="res://general/script/damage_modulate.gd" id="20_3s51u"]
 [ext_resource type="Script" uid="uid://cpvdxarsaw6fa" path="res://general/script/attack_area.gd" id="20_hr2lh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqk0f"]
@@ -54,6 +55,41 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bxcqb"]
+resource_name = "attack"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_0nqm1"]
+resource_name = "chase"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11, 12]
 }
 
 [sub_resource type="Animation" id="Animation_dq0sk"]
@@ -118,41 +154,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [15, 16]
-}
-
-[sub_resource type="Animation" id="Animation_0nqm1"]
-resource_name = "chase"
-length = 0.7
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [6, 7, 8, 9, 10, 11, 12]
-}
-
-[sub_resource type="Animation" id="Animation_bxcqb"]
-resource_name = "attack"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [12, 13, 14, 15]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uucha"]
@@ -347,3 +348,8 @@ move_state = NodePath("../EnemyStateMachine/ESFly")
 death_state = NodePath("../EnemyStateMachine/ESDeath")
 stun_state = NodePath("../EnemyStateMachine/ESStun")
 metadata/_custom_type_script = "uid://n2qibllsy8yu"
+
+[node name="DamageModulate" type="Node" parent="."]
+script = ExtResource("20_3s51u")
+color = Color(1.5, 0, 1.4928348, 1)
+metadata/_custom_type_script = "uid://dmlqeibxj1h4g"

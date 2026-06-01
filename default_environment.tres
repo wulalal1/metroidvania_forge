@@ -1,0 +1,5 @@
+[gd_resource type="Environment" format=3 uid="uid://4ul530j61o80"]
+
+[resource]
+glow_enabled = true
+glow_hdr_threshold = 0.9

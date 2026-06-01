@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dusv57044rdxo"]
+[gd_scene load_steps=13 format=3 uid="uid://dusv57044rdxo"]
 
 [ext_resource type="Texture2D" uid="uid://bil5k8lce3j10" path="res://00_global/player_hud/health_bar_frame.png" id="1_hv14i"]
 [ext_resource type="Script" uid="uid://d4k2pado2w0e6" path="res://00_global/player_hud/player_hud.gd" id="1_vb1bs"]
 [ext_resource type="Resource" uid="uid://cq0xhf71a3nxb" path="res://00_global/visual_effects/hit_particle_settings/hit_magic_blue.tres" id="3_26715"]
+[ext_resource type="Texture2D" uid="uid://u4jp7hdwqbso" path="res://general/coin/coin.png" id="4_tdgrf"]
 
 [sub_resource type="Gradient" id="Gradient_vb1bs"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -44,6 +45,45 @@ func _on_pressed() -> void:
 	#print(\"错误：场景里找不到 Player 分组！\")
 	pass
 "
+
+[sub_resource type="Animation" id="Animation_4jtec"]
+resource_name = "default"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0]
+}
+
+[sub_resource type="Animation" id="Animation_maesk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u06p2"]
+_data = {
+&"RESET": SubResource("Animation_maesk"),
+&"default": SubResource("Animation_4jtec")
+}
 
 [node name="PlayerHud" type="CanvasLayer"]
 process_mode = 3
@@ -95,6 +135,7 @@ texture_under = SubResource("GradientTexture2D_26715")
 texture_progress = SubResource("GradientTexture2D_4jtec")
 
 [node name="Button2" type="Button" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 336.0
 offset_top = 8.0
@@ -165,3 +206,30 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "quit to title"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 4.0
+offset_right = 474.0
+offset_bottom = 30.0
+
+[node name="Control" type="Control" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(6, 6)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/HBoxContainer/Control"]
+position = Vector2(-1, 12)
+texture = ExtResource("4_tdgrf")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/HBoxContainer/Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_u06p2")
+}
+autoplay = "default"
+
+[node name="GoldCountLabel" type="Label" parent="Control/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "00"

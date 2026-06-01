@@ -31,6 +31,11 @@ var max_hp : float = 20 :
 		max_hp = value
 		Messages.player_healed_changed.emit(hp,max_hp)
 		
+var gold : int = 0:
+	set(value):
+		gold = value
+		Messages.gold_changed.emit(gold)
+	
 var dash : bool = false
 var dash_count : int = 0
 var double_jump : bool = false

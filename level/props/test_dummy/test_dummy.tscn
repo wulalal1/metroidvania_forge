@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://chgocaxqhxlgs"]
+[gd_scene load_steps=12 format=3 uid="uid://chgocaxqhxlgs"]
 
 [ext_resource type="Script" uid="uid://bsedoenp06gp6" path="res://level/props/test_dummy/test_dummy.gd" id="1_fopco"]
 [ext_resource type="Script" uid="uid://dpmqf183mx5sj" path="res://00_global/visual_effects/hit_particle_settings.gd" id="2_4vmx3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://by4yj45mta71j" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_small.tres" id="3_sq8yk"]
 [ext_resource type="Resource" uid="uid://dvto1g1fvd75o" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_medium.tres" id="4_sq8yk"]
 [ext_resource type="AudioStream" uid="uid://c0av5dof81pwf" path="res://general/audio/hit.wav" id="7_bkvov"]
+[ext_resource type="Script" uid="uid://dmlqeibxj1h4g" path="res://general/script/damage_modulate.gd" id="8_me6x0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vmx3"]
 atlas = ExtResource("2_cybv0")
@@ -43,3 +44,8 @@ metadata/_custom_type_script = "uid://c8kuda8wrkqje"
 position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_bkvov")
 debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="DamageModulate" type="Node" parent="."]
+script = ExtResource("8_me6x0")
+color = Color(0.86309355, 0.6029853, 0.16934389, 1)
+metadata/_custom_type_script = "uid://dmlqeibxj1h4g"
